@@ -18,7 +18,7 @@ interface NavItem {
 }
 
 const overviewItems: NavItem[] = [
-  { label: "Dashboard", to: "/", icon: LayoutDashboard },
+  { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
   { label: "Segments", to: "/segments", icon: Users },
   { label: "Campaigns", to: "/campaigns", icon: Megaphone },
   { label: "Analytics", to: "/analytics", icon: BarChart3 },
@@ -39,7 +39,7 @@ function SidebarSection({ title, items }: { title: string; items: NavItem[] }) {
         <NavLink
           key={item.to}
           to={item.to}
-          end={item.to === "/"}
+          end={item.to === "/dashboard"}
           className={({ isActive }) =>
             cn(
               "flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm font-normal transition-colors duration-150",

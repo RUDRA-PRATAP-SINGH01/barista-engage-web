@@ -277,4 +277,53 @@
     box-shadow: 0 0 40px rgba(75, 140, 255, 0.14);
   }
 
+  .landing-page {
+    color-scheme: dark;
+  }
+
+  .landing-glass-pill {
+    box-shadow:
+      0 0 32px rgba(75, 140, 255, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .landing-explore-btn {
+    backdrop-filter: blur(12px);
+  }
+
+  .landing-layer-sweep {
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(140, 184, 255, 0.14) 50%,
+      transparent 62%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: landing-light-sweep 5.5s ease-in-out infinite;
+  }
+
+  .landing-cta-btn {
+    box-shadow:
+      0 0 32px rgba(75, 140, 255, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .landing-cta-btn:hover {
+    border-color: rgba(75, 140, 255, 0.75);
+    box-shadow:
+      0 0 56px rgba(75, 140, 255, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+
+  @keyframes landing-light-sweep {
+    0%,
+    100% {
+      background-position: 120% 0;
+    }
+    50% {
+      background-position: -20% 0;
+    }
+  }
 }

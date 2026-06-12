@@ -2,14 +2,16 @@ import { createBrowserRouter } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { DashboardPage } from "@/pages/dashboard/DashboardPage";
 import { CampaignsPage } from "@/pages/campaigns/CampaignsPage";
+import { LandingPage } from "@/pages/landing/LandingPage";
 import { PlaceholderPage } from "@/pages/PlaceholderPage";
 import { SegmentsPage } from "@/pages/segments/SegmentsPage";
 
 export const router = createBrowserRouter([
+  { path: "/", element: <LandingPage /> },
   {
     element: <AppLayout />,
     children: [
-      { path: "/", element: <DashboardPage /> },
+      { path: "/dashboard", element: <DashboardPage /> },
       { path: "/segments", element: <SegmentsPage /> },
       { path: "/campaigns", element: <CampaignsPage /> },
       {
