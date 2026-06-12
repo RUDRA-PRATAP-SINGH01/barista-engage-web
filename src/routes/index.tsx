@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { DashboardPage } from "@/pages/dashboard/DashboardPage";
+import { CampaignsPage } from "@/pages/campaigns/CampaignsPage";
 import { PlaceholderPage } from "@/pages/PlaceholderPage";
 import { SegmentsPage } from "@/pages/segments/SegmentsPage";
 
@@ -10,7 +11,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <DashboardPage /> },
       { path: "/segments", element: <SegmentsPage /> },
-      { path: "/campaigns", element: <PlaceholderPage title="Campaigns" /> },
+      { path: "/campaigns", element: <CampaignsPage /> },
       {
         path: "/campaigns/:id",
         element: <PlaceholderPage title="Campaign Detail" />,
