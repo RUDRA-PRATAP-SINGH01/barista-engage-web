@@ -14,7 +14,9 @@ export type {
 } from "./ai.dto";
 
 export type {
+  CampaignDetailDto,
   CampaignDto,
+  CampaignListItemApiDto,
   CreateCampaignRequestDto,
   SendCampaignResponseDto,
   SimulateCampaignResponseDto,

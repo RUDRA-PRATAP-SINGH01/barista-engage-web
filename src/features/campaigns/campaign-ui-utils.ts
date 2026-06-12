@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { Mail, MessageCircle, MessageSquare } from "lucide-react";
 import type { Channel } from "@/types";
-import type { CampaignHubStatus } from "./mock-data";
+import type { CampaignHubStatus } from "./campaign-list-utils";
 
 export const channelMeta: Record<
   Channel,
@@ -18,15 +18,35 @@ export const hubStatusStyles: Record<CampaignHubStatus, string> = {
   Completed: "border-primary/25 bg-primary/10 text-[#8CB8FF]",
 };
 
-export function formatCampaignDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
+const defaultChannelMeta = channelMeta.EMAIL;
+
+export function getChannelDisplay(channel: Channel | string | undefined) {
+  if (!channel) return defaultChannelMeta;
+  const upper = channel.toUpperCase() as Channel;
+  return channelMeta[upper] ?? defaultChannelMeta;
+}
+
+export function formatLocaleNumber(value: number | null | undefined): string {
+  return (value ?? 0).toLocaleString();
+}
+
+export function formatCampaignDate(iso: string | null | undefined) {
+  if (!iso) return "—";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "—";
+  return date.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
   });
 }
 
-export function formatRate(value: number | null, suffix = "%") {
-  if (value === null) return "—";
+export function formatRate(
+  value: number | null | undefined,
+  suffix = "%",
+) {
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return "—";
+  }
   return `${value}${suffix}`;
 }

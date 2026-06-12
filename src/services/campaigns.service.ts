@@ -4,18 +4,21 @@ import type {
   CampaignAnalyticsDto,
   CampaignCommunicationDto,
   CampaignDto,
+  CampaignListItemApiDto,
   CreateCampaignRequestDto,
   SendCampaignResponseDto,
   SimulateCampaignResponseDto,
 } from "@/types/dtos";
+import { normalizeCampaignList } from "@/features/campaigns/campaign-mappers";
 
 const BASE_PATH = "/campaigns";
 
 export const campaignsService = {
-  getCampaigns(): Promise<CampaignDto[]> {
-    return requestApiData(() =>
-      apiGet<ApiResponse<CampaignDto[]>>(BASE_PATH),
+  async getCampaigns(): Promise<CampaignDto[]> {
+    const items = await requestApiData(() =>
+      apiGet<ApiResponse<CampaignListItemApiDto[]>>(BASE_PATH),
     );
+    return normalizeCampaignList(items);
   },
 
   getCampaignById(id: string): Promise<CampaignDto> {

@@ -1,33 +1,60 @@
 import { TrendingUp, Trophy } from "lucide-react";
 import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import type { CampaignListKpis } from "./campaign-list-utils";
 import { campaignGlassClassName, campaignGlassProps } from "./campaign-glass";
-import { campaignKpis, topCampaignKpi } from "./mock-data";
+import { topCampaignKpi } from "./mock-data";
 
-const simpleKpis = [
-  { label: "Total Campaigns", value: String(campaignKpis.total) },
-  { label: "Active", value: String(campaignKpis.active) },
-  { label: "Draft", value: String(campaignKpis.draft) },
-  { label: "Completed", value: String(campaignKpis.completed) },
+const kpiLabels = [
+  "Total Campaigns",
+  "Active",
+  "Draft",
+  "Completed",
 ] as const;
 
-export function CampaignKpiRow() {
+interface CampaignKpiRowProps {
+  kpis: CampaignListKpis | null;
+  isLoading: boolean;
+}
+
+function KpiSkeletonCard() {
+  return (
+    <LiquidGlassCard
+      {...campaignGlassProps}
+      className={cn(campaignGlassClassName, "justify-between gap-2")}
+    >
+      <Skeleton className="h-3 w-20 bg-white/10" />
+      <Skeleton className="h-8 w-10 bg-white/10" />
+    </LiquidGlassCard>
+  );
+}
+
+export function CampaignKpiRow({ kpis, isLoading }: CampaignKpiRowProps) {
+  const kpiValues = kpis
+    ? [kpis.total, kpis.active, kpis.draft, kpis.completed]
+    : [];
+
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 2xl:grid-cols-5">
-      {simpleKpis.map((item) => (
-        <LiquidGlassCard
-          key={item.label}
-          {...campaignGlassProps}
-          className={cn(campaignGlassClassName, "justify-between gap-2")}
-        >
-          <span className="text-[11px] font-light tracking-wide text-muted-foreground">
-            {item.label}
-          </span>
-          <span className="text-2xl font-bold tracking-tight text-foreground">
-            {item.value}
-          </span>
-        </LiquidGlassCard>
-      ))}
+      {kpiLabels.map((label, index) =>
+        isLoading ? (
+          <KpiSkeletonCard key={label} />
+        ) : (
+          <LiquidGlassCard
+            key={label}
+            {...campaignGlassProps}
+            className={cn(campaignGlassClassName, "justify-between gap-2")}
+          >
+            <span className="text-[11px] font-light tracking-wide text-muted-foreground">
+              {label}
+            </span>
+            <span className="text-2xl font-bold tracking-tight text-foreground">
+              {kpiValues[index] ?? 0}
+            </span>
+          </LiquidGlassCard>
+        ),
+      )}
 
       <LiquidGlassCard
         {...campaignGlassProps}
