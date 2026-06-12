@@ -1,0 +1,64 @@
+/* Unbounded — served from /public/FONTSSS */
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-ExtraLight.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/FONTSSS/Unbounded-Black.woff") format("woff");
+}

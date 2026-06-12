@@ -2,6 +2,20 @@
 // Will be replaced by real API data (TanStack Query) during backend integration.
 import type { CampaignListItem } from "@/types";
 
+export const heroSummary = {
+  title: "Customer Intelligence Overview",
+  stats: [
+    { icon: "customers" as const, value: "5,000", label: "customers tracked" },
+    { icon: "atRisk" as const, value: "975", label: "customers at risk" },
+    {
+      icon: "campaigns" as const,
+      value: "2",
+      label: "campaigns launched this week",
+    },
+  ],
+  aiInsight: "Cold Brew Winback audience shows 74.5% open rate on WhatsApp.",
+};
+
 export const kpis = {
   totalCustomers: { value: 5000, delta: 3.2 },
   segments: { value: 12, delta: 8.4 },
@@ -17,9 +31,9 @@ export const funnel = [
 ];
 
 export const churnDistribution = [
-  { risk: "Low", count: 2850, color: "var(--success)" },
-  { risk: "Medium", count: 1240, color: "var(--warning)" },
-  { risk: "High", count: 910, color: "var(--destructive)" },
+  { risk: "Low", count: 2850, color: "#8CB8FF" },
+  { risk: "Medium", count: 1240, color: "#4B8CFF" },
+  { risk: "High", count: 910, color: "#2B5CB8" },
 ];
 
 export const segmentDistribution = [

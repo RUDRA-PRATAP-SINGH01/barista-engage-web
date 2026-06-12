@@ -32,7 +32,7 @@ const aiItems: NavItem[] = [
 function SidebarSection({ title, items }: { title: string; items: NavItem[] }) {
   return (
     <div className="flex flex-col gap-1">
-      <p className="px-3 pb-2 text-[11px] font-medium tracking-wider text-[#6E7482] uppercase">
+      <p className="px-3 pb-2 text-[11px] font-normal tracking-wider text-muted-foreground uppercase">
         {title}
       </p>
       {items.map((item) => (
@@ -42,10 +42,10 @@ function SidebarSection({ title, items }: { title: string; items: NavItem[] }) {
           end={item.to === "/"}
           className={({ isActive }) =>
             cn(
-              "flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm font-medium transition-colors duration-150",
+              "flex h-10 items-center gap-3 rounded-[10px] px-3 text-sm font-normal transition-colors duration-150",
               isActive
-                ? "bg-elevated text-foreground"
-                : "text-muted-foreground hover:bg-elevated/60 hover:text-foreground",
+                ? "bg-white/[0.06] text-foreground"
+                : "text-muted-foreground hover:bg-white/[0.04] hover:text-foreground",
             )
           }
         >
@@ -65,7 +65,7 @@ function SidebarSection({ title, items }: { title: string; items: NavItem[] }) {
 
 export function AppSidebar() {
   return (
-    <aside className="fixed inset-y-0 left-0 z-20 flex w-[280px] flex-col border-r border-border bg-sidebar">
+    <aside className="fixed inset-y-0 left-0 z-20 flex w-(--sidebar-width) flex-col border-r border-border bg-sidebar">
       {/* Logo */}
       <div className="flex items-center gap-3 px-6 pt-6 pb-8">
         <div className="flex size-9 items-center justify-center rounded-[10px] bg-primary">
@@ -75,7 +75,7 @@ export function AppSidebar() {
           <span className="text-[15px] font-semibold text-foreground">
             Barista Engage
           </span>
-          <span className="text-[11px] text-[#6E7482]">
+          <span className="text-[11px] font-light text-muted-foreground">
             Marketing Intelligence
           </span>
         </div>
@@ -91,20 +91,20 @@ export function AppSidebar() {
       <div className="border-t border-border px-4 py-4">
         <button
           type="button"
-          className="flex w-full items-center gap-3 rounded-[10px] px-2 py-2 text-left transition-colors duration-150 hover:bg-elevated/60"
+          className="flex w-full items-center gap-3 rounded-[10px] px-2 py-2 text-left transition-colors duration-150 hover:bg-white/[0.04]"
         >
-          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-elevated text-xs font-semibold text-primary">
+          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white/[0.06] text-xs font-semibold text-primary">
             MS
           </div>
           <div className="flex min-w-0 flex-1 flex-col">
-            <span className="truncate text-sm font-medium text-foreground">
+            <span className="truncate text-sm font-normal text-foreground">
               Maya Sharma
             </span>
-            <span className="truncate text-xs text-[#6E7482]">
+            <span className="truncate text-xs font-light text-muted-foreground">
               maya@barista.coffee
             </span>
           </div>
-          <ChevronDown className="size-4 text-[#6E7482]" />
+          <ChevronDown className="size-4 text-muted-foreground" />
         </button>
       </div>
     </aside>
