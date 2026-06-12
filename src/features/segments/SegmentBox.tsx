@@ -1,17 +1,11 @@
 import { TrendingDown, TrendingUp } from "lucide-react";
+import { formatLocaleNumber } from "@/lib/format-utils";
 import { cn } from "@/lib/utils";
-import {
-  computeSegmentHealthScore,
-  getSegmentDetail,
-} from "./segment-detail-data";
-import type { SegmentItem } from "./mock-data";
-import {
-  getSegmentHealthBadgeTier,
-  healthBadgeStyles,
-} from "./segment-ui-utils";
+import type { SegmentCardViewModel } from "./segment-derived-data";
+import { healthBadgeStyles } from "./segment-ui-utils";
 
 interface SegmentBoxProps {
-  segment: SegmentItem;
+  segment: SegmentCardViewModel;
   isSelected: boolean;
   onSelect: () => void;
 }
@@ -47,11 +41,7 @@ export function SegmentBox({
   onSelect,
 }: SegmentBoxProps) {
   const positive = segment.growth >= 0;
-  const healthScore = computeSegmentHealthScore(
-    getSegmentDetail(segment.id).dna,
-  );
-  const healthTier = getSegmentHealthBadgeTier(healthScore);
-  const healthBadge = healthBadgeStyles[healthTier];
+  const healthBadge = healthBadgeStyles[segment.healthTier];
 
   return (
     <button
@@ -88,7 +78,7 @@ export function SegmentBox({
         </div>
         <div className="mt-1.5 flex items-center justify-between gap-2">
           <span className="text-xs font-light text-muted-foreground">
-            {segment.count.toLocaleString()} customers
+            {formatLocaleNumber(segment.audienceSize)} customers
           </span>
           <span
             className={cn(

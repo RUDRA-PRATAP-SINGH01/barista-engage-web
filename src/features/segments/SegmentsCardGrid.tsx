@@ -1,15 +1,18 @@
 import { cn } from "@/lib/utils";
+import type { SegmentDto } from "@/types/dtos";
 import { SegmentBox } from "./SegmentBox";
-import { segments, type SegmentItem } from "./mock-data";
+import { buildSegmentCardViewModel } from "./segment-derived-data";
 
 interface SegmentsCardGridProps {
-  selectedId: string;
-  onSelect: (segment: SegmentItem) => void;
+  segments: SegmentDto[];
+  selectedId: string | null;
+  onSelect: (segmentId: string) => void;
   layout?: "stack" | "grid";
   className?: string;
 }
 
 export function SegmentsCardGrid({
+  segments,
   selectedId,
   onSelect,
   layout = "grid",
@@ -18,18 +21,24 @@ export function SegmentsCardGrid({
   return (
     <div
       className={cn(
-        layout === "stack" ? "flex flex-col gap-2" : "grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3",
+        layout === "stack"
+          ? "flex flex-col gap-2"
+          : "grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3",
         className,
       )}
     >
-      {segments.map((segment) => (
-        <SegmentBox
-          key={segment.id}
-          segment={segment}
-          isSelected={segment.id === selectedId}
-          onSelect={() => onSelect(segment)}
-        />
-      ))}
+      {segments.map((segment) => {
+        const card = buildSegmentCardViewModel(segment);
+
+        return (
+          <SegmentBox
+            key={segment.id}
+            segment={card}
+            isSelected={segment.id === selectedId}
+            onSelect={() => onSelect(segment.id)}
+          />
+        );
+      })}
     </div>
   );
 }

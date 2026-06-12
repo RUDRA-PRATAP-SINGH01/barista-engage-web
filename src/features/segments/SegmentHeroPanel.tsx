@@ -10,14 +10,10 @@ import {
   Wallet,
 } from "lucide-react";
 import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+import { formatLocaleNumber } from "@/lib/format-utils";
 import { cn } from "@/lib/utils";
-import type { SegmentItem } from "./mock-data";
 import { SegmentRadarChart } from "./SegmentRadarChart";
-import {
-  computeSegmentHealthScore,
-  dnaToChartData,
-  type SegmentDetailProfile,
-} from "./segment-detail-data";
+import type { SegmentDetailViewModel } from "./segment-derived-data";
 import {
   segmentGlassCardClassName,
   segmentGlassCardProps,
@@ -31,9 +27,7 @@ import {
 } from "./segment-ui-utils";
 
 interface SegmentHeroPanelProps {
-  segment: SegmentItem;
-  detail: SegmentDetailProfile;
-  sharePercent: number;
+  viewModel: SegmentDetailViewModel;
 }
 
 function MetricCard({
@@ -98,16 +92,10 @@ function SnapshotPill({
   );
 }
 
-export function SegmentHeroPanel({
-  segment,
-  detail,
-  sharePercent,
-}: SegmentHeroPanelProps) {
-  const chartData = dnaToChartData(detail.dna);
-  const healthScore = computeSegmentHealthScore(detail.dna);
-  const growthTone = getGrowthTone(segment.growth);
-  const statusTone = getStatusTone(segment.status);
-  const marketing = detail.marketing;
+export function SegmentHeroPanel({ viewModel }: SegmentHeroPanelProps) {
+  const growthTone = getGrowthTone(viewModel.growth);
+  const statusTone = getStatusTone(viewModel.status);
+  const marketing = viewModel.marketing;
 
   return (
     <LiquidGlassCard
@@ -119,22 +107,25 @@ export function SegmentHeroPanel({
           Segment DNA
         </p>
         <h2 className="text-[2rem] font-bold tracking-tight text-foreground drop-shadow-[0_0_28px_rgba(75,140,255,0.18)] sm:text-[2.35rem]">
-          {segment.name}
+          {viewModel.name}
         </h2>
         <p className="max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
-          {segment.description}
+          {viewModel.description}
         </p>
       </div>
 
       <div className="flex min-h-[360px] flex-col gap-4 lg:flex-row lg:items-stretch lg:gap-6">
         <div className="flex min-h-[320px] w-full flex-[2.2] lg:min-h-[380px]">
-          <SegmentRadarChart data={chartData} segmentId={segment.id} />
+          <SegmentRadarChart
+            data={viewModel.chartData}
+            segmentId={viewModel.segmentId}
+          />
         </div>
 
         <div className="flex w-full shrink-0 flex-col items-center justify-center lg:w-[200px]">
           <div className="segment-health-hero flex w-full flex-col items-center justify-center rounded-[16px] px-6 py-8">
             <span className="text-[88px] leading-none font-bold tracking-tight text-foreground sm:text-[96px]">
-              {healthScore}
+              {viewModel.healthScore}
             </span>
             <span className="mt-2 text-center text-sm font-semibold tracking-wide text-[#8CB8FF]">
               Segment Health
@@ -177,26 +168,26 @@ export function SegmentHeroPanel({
       <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
         <MetricCard
           label="Audience Size"
-          value={segment.count.toLocaleString()}
+          value={formatLocaleNumber(viewModel.audienceSize)}
           icon={Users}
           tone="neutral"
         />
         <MetricCard
           label="Share of Base"
-          value={`${sharePercent}%`}
+          value={`${viewModel.sharePercent}%`}
           icon={PieChart}
           tone="positive"
         />
         <MetricCard
           label="Growth Trend"
-          value={`${segment.growth >= 0 ? "+" : ""}${segment.growth}%`}
+          value={`${viewModel.growth >= 0 ? "+" : ""}${viewModel.growth}%`}
           icon={TrendingUp}
           tone={growthTone}
-          showTrend={segment.growth >= 0 ? "up" : "down"}
+          showTrend={viewModel.growth >= 0 ? "up" : "down"}
         />
         <MetricCard
           label="Segment Status"
-          value={segment.status}
+          value={viewModel.status}
           icon={Activity}
           tone={statusTone}
         />

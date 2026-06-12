@@ -53,18 +53,24 @@ export function SegmentRulesCard({
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-[#8CB8FF]">
             {segmentName}
           </span>
-          {rules.map((rule) => {
-            const Icon = getRuleIcon(rule);
-            return (
-              <span
-                key={rule}
-                className="glass-inset inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-normal text-foreground/90"
-              >
-                <Icon className="size-3 shrink-0 text-primary/70" />
-                {rule}
-              </span>
-            );
-          })}
+          {rules.length === 0 ? (
+            <span className="text-xs font-normal text-muted-foreground">
+              No rules defined
+            </span>
+          ) : (
+            rules.map((rule) => {
+              const Icon = getRuleIcon(rule);
+              return (
+                <span
+                  key={rule}
+                  className="glass-inset inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-normal text-foreground/90"
+                >
+                  <Icon className="size-3 shrink-0 text-primary/70" />
+                  {rule}
+                </span>
+              );
+            })
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
