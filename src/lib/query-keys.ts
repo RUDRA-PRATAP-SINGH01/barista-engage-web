@@ -16,6 +16,8 @@ export const queryKeys = {
     lists: () => [...queryKeys.segments.all, "list"] as const,
     list: (filters?: Record<string, unknown>) =>
       [...queryKeys.segments.lists(), filters ?? {}] as const,
+    listWithAudience: () =>
+      [...queryKeys.segments.lists(), "with-audience"] as const,
     details: () => [...queryKeys.segments.all, "detail"] as const,
     detail: (id: string) => [...queryKeys.segments.details(), id] as const,
     preview: (hash: string) =>

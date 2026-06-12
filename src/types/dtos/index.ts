@@ -25,8 +25,10 @@ export type {
 export type {
   CreateSegmentRequestDto,
   SegmentCustomerSampleDto,
+  SegmentDetailApiDto,
   SegmentDto,
   SegmentFilterDto,
+  SegmentListItemApiDto,
   SegmentPreviewRequestDto,
   SegmentPreviewResponseDto,
 } from "./segment.dto";

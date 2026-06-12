@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { Mail, MessageCircle, MessageSquare } from "lucide-react";
 import type { Channel } from "@/types";
+import { formatLocaleNumber } from "@/lib/format-utils";
 import type { CampaignHubStatus } from "./campaign-list-utils";
 
 export const channelMeta: Record<
@@ -26,9 +27,7 @@ export function getChannelDisplay(channel: Channel | string | undefined) {
   return channelMeta[upper] ?? defaultChannelMeta;
 }
 
-export function formatLocaleNumber(value: number | null | undefined): string {
-  return (value ?? 0).toLocaleString();
-}
+export { formatLocaleNumber };
 
 export function formatCampaignDate(iso: string | null | undefined) {
   if (!iso) return "—";

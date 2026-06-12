@@ -10,6 +10,7 @@ import {
   GlassCardTitle,
 } from "@/components/cards/GlassCard";
 import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -19,8 +20,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import { formatLocaleNumber } from "@/lib/format-utils";
 import type { CampaignStatus, Channel } from "@/types";
-import { recentCampaigns } from "./mock-data";
+import type { CampaignDto } from "@/types/dtos";
+import {
+  DASHBOARD_EMPTY_MESSAGE,
+  DASHBOARD_ERROR_MESSAGE,
+} from "./DashboardCardFeedback";
 
 const channelMeta: Record<
   Channel,
@@ -38,6 +44,8 @@ const statusStyles: Record<CampaignStatus, string> = {
   DRAFT: "bg-white/5 text-muted-foreground",
 };
 
+const SKELETON_ROW_COUNT = 5;
+
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
     month: "short",
@@ -45,7 +53,40 @@ function formatDate(iso: string) {
   });
 }
 
-export function RecentCampaignsCard() {
+interface RecentCampaignsCardProps {
+  campaigns: CampaignDto[];
+  isLoading: boolean;
+  isError: boolean;
+  isEmpty: boolean;
+  errorMessage: string | null;
+}
+
+function RecentCampaignsSkeletonRows() {
+  return (
+    <>
+      {Array.from({ length: SKELETON_ROW_COUNT }).map((_, index) => (
+        <TableRow
+          key={index}
+          className="border-white/[0.06] hover:bg-transparent"
+        >
+          {Array.from({ length: 5 }).map((__, cellIndex) => (
+            <TableCell key={cellIndex}>
+              <Skeleton className="h-4 w-full max-w-[120px] bg-white/10" />
+            </TableCell>
+          ))}
+        </TableRow>
+      ))}
+    </>
+  );
+}
+
+export function RecentCampaignsCard({
+  campaigns,
+  isLoading,
+  isError,
+  isEmpty,
+  errorMessage,
+}: RecentCampaignsCardProps) {
   return (
     <LiquidGlassCard
       blurIntensity="xl"
@@ -93,41 +134,68 @@ export function RecentCampaignsCard() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {recentCampaigns.map((campaign) => {
-              const channel = channelMeta[campaign.channel];
-              return (
-                <TableRow
-                  key={campaign.id}
-                  className="border-white/[0.06] transition-colors duration-150 hover:bg-white/[0.03]"
+            {isLoading && <RecentCampaignsSkeletonRows />}
+
+            {!isLoading && isError && (
+              <TableRow className="border-white/[0.06] hover:bg-transparent">
+                <TableCell
+                  colSpan={5}
+                  className="py-10 text-center text-sm font-normal text-muted-foreground"
                 >
-                  <TableCell className="font-semibold text-foreground">
-                    {campaign.name}
-                  </TableCell>
-                  <TableCell>
-                    <span className="flex items-center gap-2 font-normal text-muted-foreground">
-                      <channel.icon className="size-3.5 text-primary/70" />
-                      {channel.label}
-                    </span>
-                  </TableCell>
-                  <TableCell>
-                    <Badge
-                      className={cn(
-                        "rounded-md border-transparent text-[11px] font-semibold capitalize",
-                        statusStyles[campaign.status],
-                      )}
-                    >
-                      {campaign.status.toLowerCase()}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="text-right font-normal text-muted-foreground">
-                    {campaign.targetAudienceSize.toLocaleString()}
-                  </TableCell>
-                  <TableCell className="text-right font-light text-muted-foreground">
-                    {formatDate(campaign.createdAt)}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                  {errorMessage ?? DASHBOARD_ERROR_MESSAGE}
+                </TableCell>
+              </TableRow>
+            )}
+
+            {!isLoading && !isError && isEmpty && (
+              <TableRow className="border-white/[0.06] hover:bg-transparent">
+                <TableCell
+                  colSpan={5}
+                  className="py-10 text-center text-sm font-normal text-muted-foreground"
+                >
+                  {DASHBOARD_EMPTY_MESSAGE}
+                </TableCell>
+              </TableRow>
+            )}
+
+            {!isLoading &&
+              !isError &&
+              !isEmpty &&
+              campaigns.map((campaign) => {
+                const channel = channelMeta[campaign.channel];
+                return (
+                  <TableRow
+                    key={campaign.id}
+                    className="border-white/[0.06] transition-colors duration-150 hover:bg-white/[0.03]"
+                  >
+                    <TableCell className="font-semibold text-foreground">
+                      {campaign.name}
+                    </TableCell>
+                    <TableCell>
+                      <span className="flex items-center gap-2 font-normal text-muted-foreground">
+                        <channel.icon className="size-3.5 text-primary/70" />
+                        {channel.label}
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <Badge
+                        className={cn(
+                          "rounded-md border-transparent text-[11px] font-semibold capitalize",
+                          statusStyles[campaign.status],
+                        )}
+                      >
+                        {campaign.status.toLowerCase()}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right font-normal text-muted-foreground">
+                      {formatLocaleNumber(campaign.audienceSize)}
+                    </TableCell>
+                    <TableCell className="text-right font-light text-muted-foreground">
+                      {formatDate(campaign.createdAt)}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
           </TableBody>
         </Table>
       </GlassCardContent>

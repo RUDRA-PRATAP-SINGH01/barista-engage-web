@@ -6,9 +6,42 @@ import {
   GlassCardTitle,
 } from "@/components/cards/GlassCard";
 import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
-import { aiRecommendations } from "./mock-data";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { AiRecommendation } from "./dashboard-utils";
+import { DashboardCardFeedback } from "./DashboardCardFeedback";
 
-export function AiRecommendationsCard() {
+interface AiRecommendationsCardProps {
+  recommendations: AiRecommendation[];
+  isLoading: boolean;
+  isError: boolean;
+  isEmpty: boolean;
+  errorMessage: string | null;
+}
+
+function RecommendationsSkeleton() {
+  return (
+    <div className="flex flex-col gap-3">
+      {Array.from({ length: 3 }).map((_, index) => (
+        <div
+          key={index}
+          className="glass-inset flex flex-col gap-2 rounded-[12px] border border-white/[0.07] p-4"
+        >
+          <Skeleton className="h-4 w-40 bg-white/10" />
+          <Skeleton className="h-3 w-full bg-white/10" />
+          <Skeleton className="h-3 w-4/5 bg-white/10" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function AiRecommendationsCard({
+  recommendations,
+  isLoading,
+  isError,
+  isEmpty,
+  errorMessage,
+}: AiRecommendationsCardProps) {
   return (
     <LiquidGlassCard
       blurIntensity="xl"
@@ -38,19 +71,27 @@ export function AiRecommendationsCard() {
         </GlassCardDescription>
       </GlassCardHeader>
       <GlassCardContent className="flex flex-col gap-3">
-        {aiRecommendations.map((rec) => (
-          <div
-            key={rec.id}
-            className="glass-inset flex flex-col gap-1.5 rounded-[12px] border border-white/[0.07] p-4 transition-all duration-200 hover:border-primary/20"
-          >
-            <span className="text-sm font-semibold text-foreground">
-              {rec.title}
-            </span>
-            <span className="text-xs font-light leading-relaxed text-muted-foreground">
-              {rec.description}
-            </span>
-          </div>
-        ))}
+        <DashboardCardFeedback
+          isLoading={isLoading}
+          isError={isError}
+          isEmpty={isEmpty}
+          errorMessage={errorMessage}
+          skeleton={<RecommendationsSkeleton />}
+        >
+          {recommendations.map((rec) => (
+            <div
+              key={rec.id}
+              className="glass-inset flex flex-col gap-1.5 rounded-[12px] border border-white/[0.07] p-4 transition-all duration-200 hover:border-primary/20"
+            >
+              <span className="text-sm font-semibold text-foreground">
+                {rec.title}
+              </span>
+              <span className="text-xs font-light leading-relaxed text-muted-foreground">
+                {rec.description}
+              </span>
+            </div>
+          ))}
+        </DashboardCardFeedback>
       </GlassCardContent>
     </LiquidGlassCard>
   );
