@@ -91,8 +91,9 @@
   --glass-border: rgba(255, 255, 255, 0.09);
   --glass-highlight: rgba(255, 255, 255, 0.07);
   --glass-blur: 24px;
-  --sidebar-width: 280px;
-  --content-max-width: 1600px;
+    --sidebar-width: 280px;
+    --segments-panel-width: 420px;
+    --content-max-width: 1600px;
 }
 
 @layer base {
@@ -208,4 +209,72 @@
     z-index: 1;
     padding: 0.5rem 0 1rem;
   }
+
+  .segments-sidebar-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .segments-sidebar-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .segments-detail-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+  }
+
+  .segments-detail-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .segments-detail-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .segment-list-item {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .segment-list-item-hover:hover {
+    border-color: rgba(75, 140, 255, 0.28);
+    background: rgba(75, 140, 255, 0.05);
+    box-shadow:
+      0 0 22px rgba(75, 140, 255, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .segment-list-item-active {
+    border-color: rgba(75, 140, 255, 0.55);
+    background: rgba(75, 140, 255, 0.12);
+    box-shadow:
+      0 0 40px rgba(75, 140, 255, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .segment-health-hero {
+    border: 1px solid rgba(75, 140, 255, 0.35);
+    background: linear-gradient(
+      180deg,
+      rgba(75, 140, 255, 0.14) 0%,
+      rgba(75, 140, 255, 0.04) 100%
+    );
+    box-shadow:
+      0 0 56px rgba(75, 140, 255, 0.26),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .segment-action-card {
+    background: linear-gradient(
+      135deg,
+      rgba(75, 140, 255, 0.14) 0%,
+      rgba(75, 140, 255, 0.06) 50%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    box-shadow: 0 0 40px rgba(75, 140, 255, 0.14);
+  }
+
 }
