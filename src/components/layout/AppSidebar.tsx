@@ -18,6 +18,7 @@ interface NavItem {
 }
 
 const overviewItems: NavItem[] = [
+  { label: "Audience Builder", to: "/ai/audience-builder", icon: Sparkles },
   { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
   { label: "Segments", to: "/segments", icon: Users },
   { label: "Campaigns", to: "/campaigns", icon: Megaphone },
@@ -25,7 +26,6 @@ const overviewItems: NavItem[] = [
 ];
 
 const aiItems: NavItem[] = [
-  { label: "Audience Builder", to: "/ai/audience-builder", icon: Sparkles },
   { label: "Campaign Analyst", to: "/ai/campaign-analyst", icon: Bot },
 ];
 

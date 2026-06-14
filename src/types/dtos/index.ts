@@ -6,6 +6,20 @@ export type {
 } from "./analytics.dto";
 
 export type {
+  AudienceBlueprintFilterDto,
+  AudienceForecastSnippetDto,
+  AudienceGenerateRequestDto,
+  AudienceGenerateResponseDto,
+  AudiencePreviewSnippetDto,
+  AudienceStrategyDto,
+  BlueprintFilterFieldDto,
+  BlueprintOperatorDto,
+  GeneratedAudienceDto,
+  RecommendedChannelDto,
+  RevenueRangeDto,
+} from "./audience-builder.dto";
+
+export type {
   AudienceBuilderRequestDto,
   AudienceBuilderResponseDto,
   AudienceBuilderSampleDto,

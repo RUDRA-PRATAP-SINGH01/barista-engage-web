@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AppLayout } from "@/components/layout/AppLayout";
+import { AudienceBuilderPage } from "@/pages/ai/AudienceBuilderPage";
 import { DashboardPage } from "@/pages/dashboard/DashboardPage";
 import { CampaignsPage } from "@/pages/campaigns/CampaignsPage";
 import { LandingPage } from "@/pages/landing/LandingPage";
@@ -11,6 +12,7 @@ export const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
+      { path: "/ai/audience-builder", element: <AudienceBuilderPage /> },
       { path: "/dashboard", element: <DashboardPage /> },
       { path: "/segments", element: <SegmentsPage /> },
       { path: "/campaigns", element: <CampaignsPage /> },
@@ -22,10 +24,6 @@ export const router = createBrowserRouter([
       {
         path: "/analytics/:campaignId",
         element: <PlaceholderPage title="Campaign Analytics" />,
-      },
-      {
-        path: "/ai/audience-builder",
-        element: <PlaceholderPage title="AI Audience Builder" />,
       },
       {
         path: "/ai/campaign-analyst",
