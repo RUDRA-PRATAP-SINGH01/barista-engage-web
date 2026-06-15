@@ -1,7 +1,10 @@
-const DEFAULT_API_BASE_URL = "/api";
+const PRODUCTION_API_BASE_URL =
+  "https://barista-engage-api-80kw.onrender.com";
 
 export function getApiBaseUrl(): string {
-  return import.meta.env.VITE_API_BASE_URL ?? DEFAULT_API_BASE_URL;
+  const baseUrl =
+    import.meta.env.VITE_API_BASE_URL ?? PRODUCTION_API_BASE_URL;
+  return baseUrl.replace(/\/$/, "");
 }
 
 /** Set VITE_ENABLE_CAMPAIGN_CREATIVE=false to hide visual generation in demo. */

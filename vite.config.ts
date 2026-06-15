@@ -13,8 +13,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "https://barista-engage-api-80kw.onrender.com",
         changeOrigin: true,
+        secure: true,
         rewrite: (p) => p.replace(/^\/api/, ""),
       },
     },
