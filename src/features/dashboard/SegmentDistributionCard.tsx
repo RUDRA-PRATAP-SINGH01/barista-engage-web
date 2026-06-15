@@ -65,7 +65,7 @@ export function SegmentDistributionCard({
           Customer distribution by RFM segment
         </GlassCardDescription>
       </GlassCardHeader>
-      <GlassCardContent className="flex h-[260px] flex-col justify-center gap-4 overflow-y-auto">
+      <GlassCardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col justify-center gap-4 overflow-y-auto">
         <DashboardCardFeedback
           isLoading={isLoading}
           isError={isError}

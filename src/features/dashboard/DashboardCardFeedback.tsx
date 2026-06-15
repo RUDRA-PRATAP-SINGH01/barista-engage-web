@@ -64,7 +64,11 @@ export function DashboardCardFeedback({
     );
   }
 
-  return <>{children}</>;
+  return (
+    <div className={cn("h-full min-h-0 w-full min-w-0", className)}>
+      {children}
+    </div>
+  );
 }
 
 export function DashboardKpiSkeleton({ variant }: { variant: "default" | "featured" | "muted" }) {

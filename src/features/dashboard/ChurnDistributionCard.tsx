@@ -1,4 +1,4 @@
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Cell, Pie, PieChart, Tooltip } from "recharts";
 import {
   GlassCardContent,
   GlassCardDescription,
@@ -10,7 +10,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { formatLocaleNumber, normalizeNumber } from "@/lib/format-utils";
 import type { ChurnDistributionEntry } from "./dashboard-utils";
 import { DashboardCardFeedback } from "./DashboardCardFeedback";
+import { DashboardChartContainer } from "./DashboardChartContainer";
 import { chartTooltipStyle } from "./chart-theme";
+
+const CHURN_CHART_HEIGHT = 170;
 
 interface ChurnDistributionCardProps {
   churnDistribution: ChurnDistributionEntry[];
@@ -60,7 +63,7 @@ export function ChurnDistributionCard({
           Customer distribution by churn risk
         </GlassCardDescription>
       </GlassCardHeader>
-      <GlassCardContent className="flex h-[260px] flex-col items-center justify-between">
+      <GlassCardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col items-center justify-between">
         <DashboardCardFeedback
           isLoading={isLoading}
           isError={isError}
@@ -69,8 +72,8 @@ export function ChurnDistributionCard({
           skeleton={<ChurnSkeleton />}
         >
           <>
-            <div className="relative h-[170px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
+            <div className="relative w-full min-w-0">
+              <DashboardChartContainer height={CHURN_CHART_HEIGHT}>
                 <PieChart>
                   <Tooltip contentStyle={chartTooltipStyle} />
                   <Pie
@@ -91,7 +94,7 @@ export function ChurnDistributionCard({
                     ))}
                   </Pie>
                 </PieChart>
-              </ResponsiveContainer>
+              </DashboardChartContainer>
               <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-xl font-bold text-foreground">
                   {formatLocaleNumber(total)}

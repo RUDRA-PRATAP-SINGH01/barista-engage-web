@@ -10,6 +10,8 @@ import {
 } from "recharts";
 import { chartTooltipStyle } from "@/features/dashboard/chart-theme";
 
+const RADAR_CHART_HEIGHT = 320;
+
 interface SegmentRadarChartProps {
   data: { dimension: string; score: number }[];
   segmentId: string;
@@ -19,12 +21,15 @@ export function SegmentRadarChart({ data, segmentId }: SegmentRadarChartProps) {
   const gradientId = useId().replace(/:/g, "");
 
   return (
-    <div className="segment-radar-glow relative h-full w-full min-h-[320px]">
+    <div
+      className="segment-radar-glow relative w-full min-w-0 shrink-0"
+      style={{ height: RADAR_CHART_HEIGHT }}
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(75,140,255,0.28)_0%,rgba(75,140,255,0.08)_42%,transparent_70%)]"
       />
-      <ResponsiveContainer width="100%" height="100%" minHeight={320}>
+      <ResponsiveContainer width="100%" height={RADAR_CHART_HEIGHT} minWidth={0}>
         <RadarChart cx="50%" cy="50%" outerRadius="76%" data={data}>
           <defs>
             <linearGradient

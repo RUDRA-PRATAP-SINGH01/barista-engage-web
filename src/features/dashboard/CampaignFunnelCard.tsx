@@ -2,7 +2,6 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -17,7 +16,10 @@ import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { FunnelStage } from "./dashboard-utils";
 import { DashboardCardFeedback } from "./DashboardCardFeedback";
+import { DashboardChartContainer } from "./DashboardChartContainer";
 import { chartTooltipStyle } from "./chart-theme";
+
+const FUNNEL_CHART_HEIGHT = 228;
 
 interface CampaignFunnelCardProps {
   funnel: FunnelStage[];
@@ -69,7 +71,7 @@ export function CampaignFunnelCard({
           Communication outcomes across all campaigns
         </GlassCardDescription>
       </GlassCardHeader>
-      <GlassCardContent className="h-[260px]">
+      <GlassCardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col">
         <DashboardCardFeedback
           isLoading={isLoading}
           isError={isError}
@@ -77,7 +79,7 @@ export function CampaignFunnelCard({
           errorMessage={errorMessage}
           skeleton={<FunnelSkeleton />}
         >
-          <ResponsiveContainer width="100%" height="100%">
+          <DashboardChartContainer height={FUNNEL_CHART_HEIGHT}>
             <BarChart
               data={funnel}
               barSize={44}
@@ -118,7 +120,7 @@ export function CampaignFunnelCard({
                 fillOpacity={0.85}
               />
             </BarChart>
-          </ResponsiveContainer>
+          </DashboardChartContainer>
         </DashboardCardFeedback>
       </GlassCardContent>
     </LiquidGlassCard>
