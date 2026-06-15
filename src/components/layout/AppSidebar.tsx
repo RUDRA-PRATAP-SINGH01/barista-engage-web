@@ -80,8 +80,8 @@ export function AppSidebar() {
 
       {/* Navigation */}
       <nav className="flex flex-1 flex-col gap-8 overflow-y-auto px-4">
-        <SidebarSection title="Overview" items={overviewItems} />
         <SidebarSection title="AI Tools" items={aiItems} />
+        <SidebarSection title="Overview" items={overviewItems} />
       </nav>
 
       {/* User profile */}
