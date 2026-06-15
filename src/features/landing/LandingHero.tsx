@@ -20,10 +20,7 @@ export function LandingHero({ exiting }: LandingHeroProps) {
         <br />
         Into Revenue
       </h1>
-      <p
-        id="features"
-        className="mt-6 max-w-[700px] text-base leading-relaxed font-light text-muted-foreground sm:text-lg"
-      >
+      <p className="mt-6 max-w-[700px] text-base leading-relaxed font-light text-muted-foreground sm:text-lg">
         AI-powered audience segmentation, campaign intelligence, and customer
         retention insights for modern coffee brands.
       </p>
