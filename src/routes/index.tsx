@@ -5,6 +5,7 @@ import { DashboardPage } from "@/pages/dashboard/DashboardPage";
 import { CampaignsPage } from "@/pages/campaigns/CampaignsPage";
 import { LandingPage } from "@/pages/landing/LandingPage";
 import { PlaceholderPage } from "@/pages/PlaceholderPage";
+import { CampaignStudioPage } from "@/pages/campaign-studio/CampaignStudioPage";
 import { SegmentsPage } from "@/pages/segments/SegmentsPage";
 
 export const router = createBrowserRouter([
@@ -26,8 +27,8 @@ export const router = createBrowserRouter([
         element: <PlaceholderPage title="Campaign Analytics" />,
       },
       {
-        path: "/ai/campaign-analyst",
-        element: <PlaceholderPage title="AI Campaign Analyst" />,
+        path: "/campaign-studio",
+        element: <CampaignStudioPage />,
       },
     ],
   },

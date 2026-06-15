@@ -4,9 +4,7 @@ import {
   LayoutDashboard,
   Users,
   Megaphone,
-  BarChart3,
   Sparkles,
-  Bot,
   ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -18,15 +16,14 @@ interface NavItem {
 }
 
 const overviewItems: NavItem[] = [
-  { label: "Audience Builder", to: "/ai/audience-builder", icon: Sparkles },
   { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
   { label: "Segments", to: "/segments", icon: Users },
   { label: "Campaigns", to: "/campaigns", icon: Megaphone },
-  { label: "Analytics", to: "/analytics", icon: BarChart3 },
 ];
 
 const aiItems: NavItem[] = [
-  { label: "Campaign Analyst", to: "/ai/campaign-analyst", icon: Bot },
+  { label: "Audience Builder", to: "/ai/audience-builder", icon: Sparkles },
+  { label: "Campaign Studio", to: "/campaign-studio", icon: Megaphone },
 ];
 
 function SidebarSection({ title, items }: { title: string; items: NavItem[] }) {

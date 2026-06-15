@@ -18,15 +18,3 @@ export interface AudienceBuilderSampleDto {
   preferredDrink: string | null;
   lastOrderAt: string | null;
 }
-
-export interface CampaignAnalystRequestDto {
-  campaignId: string;
-}
-
-export interface CampaignAnalystResponseDto {
-  campaignId: string;
-  summary: string;
-  keyInsights: string[];
-  recommendations: string[];
-  performanceScore: number;
-}

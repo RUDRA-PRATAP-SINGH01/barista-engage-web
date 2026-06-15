@@ -29,6 +29,9 @@ function normalizeChannel(value: string | undefined): Channel {
 
 function normalizeStatus(value: string | undefined): CampaignStatus {
   const upper = (value ?? "").toUpperCase();
+  if (upper === "ACTIVE") {
+    return "SENDING";
+  }
   if (STATUSES.includes(upper as CampaignStatus)) {
     return upper as CampaignStatus;
   }

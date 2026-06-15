@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-
-import { RotateCcw, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, RotateCcw, Sparkles } from "lucide-react";
 
 import { AudienceAnalysisState } from "@/features/audience-builder/components/AudienceAnalysisState";
 
@@ -27,6 +27,8 @@ import type { AudienceBuilderPhase } from "@/features/audience-builder/types";
 
 
 export function AudienceBuilderPage() {
+
+  const navigate = useNavigate();
 
   const [phase, setPhase] = useState<AudienceBuilderPhase>("empty");
 
@@ -123,6 +125,20 @@ export function AudienceBuilderPage() {
     setGoal("");
 
   }, [resetAnalysis]);
+
+
+
+  const handleCreateCampaign = useCallback(() => {
+
+    if (!generateData) return;
+
+    navigate("/campaign-studio", {
+
+      state: { audience: generateData },
+
+    });
+
+  }, [generateData, navigate]);
 
 
 
@@ -317,6 +333,28 @@ export function AudienceBuilderPage() {
             <div className="xl:col-span-12">
 
               <AudienceRoiForecastPanel data={results.forecast} />
+
+            </div>
+
+
+
+            <div className="xl:col-span-12 flex justify-end">
+
+              <button
+
+                type="button"
+
+                onClick={handleCreateCampaign}
+
+                className="inline-flex items-center gap-2 rounded-full bg-[#4b8cff] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#3a7af0]"
+
+              >
+
+                Create Campaign
+
+                <ArrowRight className="size-4" />
+
+              </button>
 
             </div>
 

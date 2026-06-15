@@ -23,9 +23,26 @@ export type {
   AudienceBuilderRequestDto,
   AudienceBuilderResponseDto,
   AudienceBuilderSampleDto,
-  CampaignAnalystRequestDto,
-  CampaignAnalystResponseDto,
 } from "./ai.dto";
+
+export type {
+  CampaignCreativeDto,
+  CampaignForecastDto,
+  CampaignMessageDto,
+  CampaignOverviewDto,
+  CampaignRecommendationsDto,
+  CampaignStrategyDto,
+  CampaignStudioResponseDto,
+  GenerateCampaignStudioRequestDto,
+  GenerateCreativeRequestDto,
+  GenerateMessageRequestDto,
+  LaunchCampaignStudioRequestDto,
+  LaunchCampaignStudioResponseDto,
+  RegenerateMessageRequestDto,
+  SaveCampaignStudioRequestDto,
+  SaveCampaignStudioResponseDto,
+  StrategyCardDto,
+} from "./campaign-studio.dto";
 
 export type {
   CampaignDetailDto,

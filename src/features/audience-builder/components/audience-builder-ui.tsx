@@ -75,7 +75,11 @@ export function MetricBlock({
   );
 }
 
-export function PriorityPill({ priority }: { priority: "High" | "Medium" | "Low" }) {
+export function PriorityPill({
+  priority,
+}: {
+  priority: "High" | "Medium" | "Low";
+}) {
   return (
     <span
       className={cn(

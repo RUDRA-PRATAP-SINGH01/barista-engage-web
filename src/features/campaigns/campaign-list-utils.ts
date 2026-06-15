@@ -14,6 +14,7 @@ export function toHubStatus(status: CampaignStatus | string): CampaignHubStatus 
   switch (status) {
     case "DRAFT":
       return "Draft";
+    case "ACTIVE":
     case "SENDING":
     case "SCHEDULED":
       return "Active";

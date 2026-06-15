@@ -27,7 +27,5 @@ export const queryKeys = {
     all: ["ai"] as const,
     audienceBuilder: (promptHash: string) =>
       [...queryKeys.ai.all, "audience-builder", promptHash] as const,
-    campaignAnalyst: (campaignId: string) =>
-      [...queryKeys.ai.all, "campaign-analyst", campaignId] as const,
   },
 } as const;
