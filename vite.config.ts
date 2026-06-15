@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://barista-engage-api-80kw.onrender.com",
+        target: "https://barista-engage-api-8okw.onrender.com",
         changeOrigin: true,
         secure: true,
         rewrite: (p) => p.replace(/^\/api/, ""),
