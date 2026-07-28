@@ -7,12 +7,12 @@ import {
   YAxis,
 } from "recharts";
 import {
-  GlassCardContent,
-  GlassCardDescription,
-  GlassCardHeader,
-  GlassCardTitle,
-} from "@/components/cards/GlassCard";
-import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { DashboardCard } from "@/components/shared/DashboardCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { FunnelStage } from "./dashboard-utils";
 import { DashboardCardFeedback } from "./DashboardCardFeedback";
@@ -20,6 +20,49 @@ import { DashboardChartContainer } from "./DashboardChartContainer";
 import { chartTooltipStyle } from "./chart-theme";
 
 const FUNNEL_CHART_HEIGHT = 228;
+const SEGMENT_H = 3;
+const SEGMENT_GAP = 2;
+
+interface SegmentBarShapeProps {
+  x?: number;
+  y?: number;
+  width?: number;
+  height?: number;
+}
+
+/** Stacked dash segments — shadcndashboard SaaS chart look */
+function SegmentedBar({
+  x = 0,
+  y = 0,
+  width = 0,
+  height = 0,
+}: SegmentBarShapeProps) {
+  if (height <= 0 || width <= 0) return null;
+
+  const step = SEGMENT_H + SEGMENT_GAP;
+  const count = Math.max(1, Math.floor(height / step));
+
+  return (
+    <g>
+      {Array.from({ length: count }, (_, i) => {
+        const segY = y + height - (i + 1) * step + SEGMENT_GAP;
+        const opacity = 0.35 + (i / Math.max(count - 1, 1)) * 0.65;
+        return (
+          <rect
+            key={i}
+            x={x}
+            y={segY}
+            width={width}
+            height={SEGMENT_H}
+            rx={1}
+            fill="var(--foreground)"
+            fillOpacity={opacity}
+          />
+        );
+      })}
+    </g>
+  );
+}
 
 interface CampaignFunnelCardProps {
   funnel: FunnelStage[];
@@ -36,14 +79,14 @@ function FunnelSkeleton() {
         {Array.from({ length: 4 }).map((_, index) => (
           <Skeleton
             key={index}
-            className="w-full bg-white/10"
+            className="w-full"
             style={{ height: `${55 + index * 18}%` }}
           />
         ))}
       </div>
       <div className="flex justify-between gap-3">
         {Array.from({ length: 4 }).map((_, index) => (
-          <Skeleton key={index} className="h-3 w-full bg-white/10" />
+          <Skeleton key={index} className="h-3 w-full" />
         ))}
       </div>
     </div>
@@ -58,20 +101,14 @@ export function CampaignFunnelCard({
   errorMessage,
 }: CampaignFunnelCardProps) {
   return (
-    <LiquidGlassCard
-      blurIntensity="xl"
-      shadowIntensity="md"
-      glowIntensity="sm"
-      borderRadius="16px"
-      className="flex h-full min-w-0 flex-col gap-4 bg-white/8 p-4"
-    >
-      <GlassCardHeader>
-        <GlassCardTitle>Campaign Funnel</GlassCardTitle>
-        <GlassCardDescription>
+    <DashboardCard className="flex min-w-0 flex-col gap-4 py-5">
+      <CardHeader className="pb-0">
+        <CardTitle>Campaign Funnel</CardTitle>
+        <CardDescription>
           Communication outcomes across all campaigns
-        </GlassCardDescription>
-      </GlassCardHeader>
-      <GlassCardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col">
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col">
         <DashboardCardFeedback
           isLoading={isLoading}
           isError={isError}
@@ -82,12 +119,12 @@ export function CampaignFunnelCard({
           <DashboardChartContainer height={FUNNEL_CHART_HEIGHT}>
             <BarChart
               data={funnel}
-              barSize={44}
+              barSize={36}
               margin={{ top: 8, right: 8, left: -16, bottom: 0 }}
             >
               <CartesianGrid
                 vertical={false}
-                stroke="rgba(255,255,255,0.06)"
+                stroke="var(--chart-grid)"
                 strokeDasharray="3 3"
               />
               <XAxis
@@ -95,34 +132,34 @@ export function CampaignFunnelCard({
                 axisLine={false}
                 tickLine={false}
                 tick={{
-                  fill: "rgba(163,167,178,0.7)",
+                  fill: "var(--chart-tick)",
                   fontSize: 12,
-                  fontWeight: 300,
+                  fontWeight: 400,
                 }}
               />
               <YAxis
                 axisLine={false}
                 tickLine={false}
                 tick={{
-                  fill: "rgba(163,167,178,0.7)",
+                  fill: "var(--chart-tick)",
                   fontSize: 12,
-                  fontWeight: 300,
+                  fontWeight: 400,
                 }}
               />
               <Tooltip
-                cursor={{ fill: "rgba(75,140,255,0.08)", opacity: 1 }}
+                cursor={{ fill: "var(--muted)", opacity: 0.5 }}
                 contentStyle={chartTooltipStyle}
               />
               <Bar
                 dataKey="count"
-                fill="var(--primary)"
-                radius={[6, 6, 0, 0]}
-                fillOpacity={0.85}
+                shape={(props) => (
+                  <SegmentedBar {...(props as SegmentBarShapeProps)} />
+                )}
               />
             </BarChart>
           </DashboardChartContainer>
         </DashboardCardFeedback>
-      </GlassCardContent>
-    </LiquidGlassCard>
+      </CardContent>
+    </DashboardCard>
   );
 }

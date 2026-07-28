@@ -1,6 +1,7 @@
 import { TrendingDown, TrendingUp } from "lucide-react";
-import { GlassCardContent } from "@/components/cards/GlassCard";
-import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+import { CardDescription, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { DashboardCard } from "@/components/shared/DashboardCard";
 import { cn } from "@/lib/utils";
 
 interface KpiCardProps {
@@ -12,38 +13,26 @@ interface KpiCardProps {
   variant?: "default" | "featured" | "muted";
 }
 
-const variantStyles = {
-  featured: {
-    card: "border border-primary/30 bg-gradient-to-br from-primary/10 via-white/10 to-white/[0.04] shadow-[0_0_40px_rgba(75,140,255,0.18)]",
-    glow: "lg" as const,
-    shadow: "lg" as const,
-    value: "text-[36px] sm:text-[40px] text-primary",
-    label: "text-sm font-medium text-foreground/80",
-    iconWrap: "border border-primary/25 bg-primary/15",
-    icon: "size-5 text-primary",
-    iconBox: "size-11 rounded-[12px]",
-  },
-  default: {
-    card: "bg-white/8",
-    glow: "sm" as const,
-    shadow: "md" as const,
-    value: "text-[26px] text-foreground",
-    label: "text-sm font-normal text-muted-foreground",
-    iconWrap: "",
-    icon: "size-4 text-primary/80",
-    iconBox: "size-9 rounded-[10px]",
-  },
-  muted: {
-    card: "bg-white/[0.04] opacity-90",
-    glow: "none" as const,
-    shadow: "sm" as const,
-    value: "text-[22px] font-semibold text-foreground/85",
-    label: "text-xs font-light text-muted-foreground",
-    iconWrap: "",
-    icon: "size-3.5 text-muted-foreground",
-    iconBox: "size-8 rounded-[8px]",
-  },
-};
+/** Tiny monochrome sparkline visual (decorative) */
+function SparkBars({ featured }: { featured?: boolean }) {
+  const heights = featured
+    ? [28, 40, 32, 48, 36, 52, 44]
+    : [18, 26, 20, 32, 24, 28, 22];
+  return (
+    <div className="flex h-10 items-end gap-0.5" aria-hidden>
+      {heights.map((h, i) => (
+        <span
+          key={i}
+          className={cn(
+            "w-1 rounded-[1px] bg-foreground",
+            featured ? "opacity-90" : "opacity-40",
+          )}
+          style={{ height: h * 0.55 }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function KpiCard({
   label,
@@ -55,68 +44,51 @@ export function KpiCard({
 }: KpiCardProps) {
   const positive = delta >= 0;
   const TrendIcon = positive ? TrendingUp : TrendingDown;
-  const styles = variantStyles[variant];
+  const isFeatured = variant === "featured";
+  const isMuted = variant === "muted";
 
   return (
-    <LiquidGlassCard
-      blurIntensity={variant === "featured" ? "xl" : "lg"}
-      shadowIntensity={styles.shadow}
-      glowIntensity={styles.glow}
-      borderRadius="16px"
-      className={cn("flex flex-col gap-4 p-4", styles.card)}
-    >
-      {variant === "featured" && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary/70 to-transparent"
-        />
-      )}
-
-      <GlassCardContent className="flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-          <span className={styles.label}>{label}</span>
-          <div
-            className={cn(
-              "glass-inset flex items-center justify-center transition-colors duration-200",
-              styles.iconBox,
-              styles.iconWrap,
-            )}
-          >
-            <Icon className={styles.icon} />
-          </div>
-        </div>
-        <div className="flex items-end justify-between gap-2">
-          <span
-            className={cn(
-              "leading-none font-bold tracking-tight",
-              styles.value,
-            )}
-          >
-            {value}
-          </span>
-          <div className="flex flex-col items-end gap-0.5">
+    <DashboardCard className={cn("py-5", isMuted && "opacity-95")}>
+      <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0">
+        <div className="flex min-w-0 flex-col gap-2">
+          <CardDescription className="text-sm font-medium text-muted-foreground">
+            {label}
+          </CardDescription>
+          <div className="flex flex-wrap items-center gap-2">
             <span
               className={cn(
-                "flex items-center gap-1 text-xs font-semibold",
-                positive ? "text-[#8CB8FF]" : "text-muted-foreground",
-                variant === "muted" && "text-[11px] font-medium",
+                "leading-none font-semibold tracking-tight text-foreground",
+                isFeatured ? "text-3xl" : isMuted ? "text-xl" : "text-2xl",
               )}
             >
-              <TrendIcon className="size-3.5" />
-              {positive ? "+" : ""}
-              {delta}%
+              {value}
             </span>
-            <span
-              className={cn(
-                "text-[11px] font-light text-muted-foreground",
-                variant === "muted" && "text-[10px]",
-              )}
-            >
-              {deltaLabel}
-            </span>
+            {delta !== 0 && (
+              <Badge
+                className={cn(
+                  "rounded-md border-transparent text-[11px] font-semibold",
+                  positive
+                    ? "bg-[var(--success)]/15 text-[var(--success)]"
+                    : "bg-destructive/15 text-destructive",
+                )}
+              >
+                <TrendIcon className="mr-0.5 size-3" />
+                {positive ? "+" : ""}
+                {delta}%
+              </Badge>
+            )}
           </div>
+          {delta !== 0 && (
+            <span className="text-[11px] text-muted-foreground">{deltaLabel}</span>
+          )}
         </div>
-      </GlassCardContent>
-    </LiquidGlassCard>
+        <div className="flex flex-col items-end gap-3">
+          <div className="flex size-8 items-center justify-center rounded-md border border-border bg-muted/40">
+            <Icon className="size-3.5 text-foreground" />
+          </div>
+          <SparkBars featured={isFeatured} />
+        </div>
+      </CardHeader>
+    </DashboardCard>
   );
 }

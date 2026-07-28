@@ -1,10 +1,10 @@
 import {
-  GlassCardContent,
-  GlassCardDescription,
-  GlassCardHeader,
-  GlassCardTitle,
-} from "@/components/cards/GlassCard";
-import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { DashboardCard } from "@/components/shared/DashboardCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatLocaleNumber, normalizeNumber } from "@/lib/format-utils";
 import type { SegmentDistributionEntry } from "./dashboard-utils";
@@ -24,10 +24,10 @@ function SegmentDistributionSkeleton() {
       {Array.from({ length: 5 }).map((_, index) => (
         <div key={index} className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">
-            <Skeleton className="h-3 w-24 bg-white/10" />
-            <Skeleton className="h-3 w-16 bg-white/10" />
+            <Skeleton className="h-3 w-24" />
+            <Skeleton className="h-3 w-16" />
           </div>
-          <Skeleton className="h-1.5 w-full rounded-full bg-white/10" />
+          <Skeleton className="h-1.5 w-full rounded-full" />
         </div>
       ))}
     </div>
@@ -52,20 +52,14 @@ export function SegmentDistributionCard({
   );
 
   return (
-    <LiquidGlassCard
-      blurIntensity="xl"
-      shadowIntensity="md"
-      glowIntensity="sm"
-      borderRadius="16px"
-      className="flex h-full min-w-0 flex-col gap-4 bg-white/8 p-4"
-    >
-      <GlassCardHeader>
-        <GlassCardTitle>RFM Segments</GlassCardTitle>
-        <GlassCardDescription>
+    <DashboardCard className="flex min-w-0 flex-col gap-4 py-5">
+      <CardHeader className="pb-0">
+        <CardTitle>RFM Segments</CardTitle>
+        <CardDescription>
           Customer distribution by RFM segment
-        </GlassCardDescription>
-      </GlassCardHeader>
-      <GlassCardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col justify-center gap-4 overflow-y-auto">
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col justify-center gap-4 overflow-y-auto">
         <DashboardCardFeedback
           isLoading={isLoading}
           isError={isError}
@@ -91,19 +85,19 @@ export function SegmentDistributionCard({
                   </span>
                 </span>
               </div>
-              <div className="glass-inset h-1.5 w-full overflow-hidden rounded-full">
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
                 <div
-                  className="h-full rounded-full bg-primary transition-all duration-200"
+                  className="h-full rounded-full bg-foreground transition-all duration-200"
                   style={{
                     width: `${max > 0 ? (normalizeNumber(entry.count) / max) * 100 : 0}%`,
-                    opacity: 0.85,
+                    opacity: 0.35 + (normalizeNumber(entry.count) / Math.max(max, 1)) * 0.65,
                   }}
                 />
               </div>
             </div>
           ))}
         </DashboardCardFeedback>
-      </GlassCardContent>
-    </LiquidGlassCard>
+      </CardContent>
+    </DashboardCard>
   );
 }

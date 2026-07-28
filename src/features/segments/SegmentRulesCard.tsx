@@ -50,7 +50,7 @@ export function SegmentRulesCard({
 
       <GlassCardContent className="flex flex-1 flex-col gap-3">
         <div className="flex flex-wrap gap-1.5">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-[#8CB8FF]">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-[var(--foreground)]">
             {segmentName}
           </span>
           {rules.length === 0 ? (

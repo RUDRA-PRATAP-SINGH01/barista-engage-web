@@ -45,7 +45,7 @@ export function AudienceGoalInput({
               disabled={disabled}
               rows={5}
               placeholder="I want to increase revenue by bringing back customers who haven't visited recently."
-              className="min-h-[160px] w-full resize-none rounded-[22px] bg-[#0d121c] px-5 py-4 text-base font-light leading-relaxed text-white placeholder:text-[#667085] focus:outline-none disabled:opacity-60"
+              className="min-h-[160px] w-full resize-none rounded-[22px] bg-background px-5 py-4 text-base font-light leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none disabled:opacity-60"
             />
           </PremiumSurface>
 
@@ -56,7 +56,7 @@ export function AudienceGoalInput({
                 type="button"
                 disabled={disabled}
                 onClick={() => applySuggestion(suggestion)}
-                className="rounded-full border border-white/8 bg-[#151b28] px-4 py-2 text-sm font-light text-[#c4cad6] transition-colors hover:border-[#4b8cff]/35 hover:bg-[#1a2233] hover:text-white disabled:opacity-50"
+                className="rounded-full border border-border bg-muted px-4 py-2 text-sm font-light text-muted-foreground transition-colors hover:border-[var(--foreground)]/35 hover:bg-muted hover:text-foreground disabled:opacity-50"
               >
                 {suggestion.label}
               </button>
@@ -69,7 +69,7 @@ export function AudienceGoalInput({
             type="button"
             disabled={disabled}
             onClick={() => setShowRecommendations((open) => !open)}
-            className="flex w-full items-center justify-center gap-2 rounded-[20px] border border-[#4b8cff]/30 bg-[#4b8cff] px-5 py-4 text-sm font-semibold text-white shadow-[0_16px_48px_rgba(75,140,255,0.28)] transition-transform hover:scale-[1.01] disabled:opacity-50"
+            className="flex w-full items-center justify-center gap-2 rounded-[20px] border border-border bg-foreground px-5 py-4 text-sm font-semibold text-background shadow-sm transition-transform hover:scale-[1.01] disabled:opacity-50"
           >
             <Sparkles className="size-4" />
             AI Recommendations
@@ -77,7 +77,7 @@ export function AudienceGoalInput({
 
           {showRecommendations ? (
             <PremiumSurface className="absolute top-[calc(100%+12px)] z-20 w-full p-3 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-              <p className="mb-2 px-2 text-[11px] font-medium tracking-wide text-[#8a93a8] uppercase">
+              <p className="mb-2 px-2 text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
                 From your segments
               </p>
               <div className="flex flex-col gap-1">
@@ -86,7 +86,7 @@ export function AudienceGoalInput({
                     key={goal.id}
                     type="button"
                     onClick={() => applySuggestion(goal)}
-                    className="rounded-[14px] px-3 py-2.5 text-left text-sm font-light text-[#d7dbe4] transition-colors hover:bg-white/5"
+                    className="rounded-[14px] px-3 py-2.5 text-left text-sm font-light text-foreground transition-colors hover:bg-muted"
                   >
                     {goal.label}
                   </button>
@@ -98,9 +98,9 @@ export function AudienceGoalInput({
           <button
             type="submit"
             disabled={disabled || !value.trim()}
-            className="mt-3 flex w-full items-center justify-center gap-2 rounded-[20px] border border-white/8 bg-[#151b28] px-5 py-4 text-sm font-semibold text-white transition-colors hover:border-[#4b8cff]/30 hover:bg-[#1a2233] disabled:opacity-50"
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-[20px] border border-border bg-muted px-5 py-4 text-sm font-semibold text-foreground transition-colors hover:border-[var(--foreground)]/30 hover:bg-muted disabled:opacity-50"
           >
-            <Wand2 className="size-4 text-[#8cb8ff]" />
+            <Wand2 className="size-4 text-[var(--foreground)]" />
             Analyze Audience
             <ArrowRight className="size-4" />
           </button>

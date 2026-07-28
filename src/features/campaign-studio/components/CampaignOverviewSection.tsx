@@ -16,22 +16,22 @@ export function CampaignOverviewSection({ overview }: CampaignOverviewSectionPro
       variant="accent"
       className="relative overflow-hidden p-6 sm:p-8"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(75,140,255,0.18),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,transparent,transparent_55%)]" />
       <div className="relative">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#4b8cff]/30 bg-[#4b8cff]/15 px-3 py-1 text-[10px] font-semibold tracking-wide text-[#8cb8ff] uppercase">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--foreground)]/30 bg-[var(--foreground)]/15 px-3 py-1 text-[10px] font-semibold tracking-wide text-[var(--foreground)] uppercase">
             <Sparkles className="size-3" />
             Campaign Overview
           </span>
           <SectionEyebrow>Section 1</SectionEyebrow>
         </div>
-        <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           {overview.campaignName}
         </h2>
-        <p className="mt-3 text-sm font-medium text-[#8cb8ff]">
+        <p className="mt-3 text-sm font-medium text-[var(--foreground)]">
           {overview.campaignObjective}
         </p>
-        <p className="mt-4 max-w-3xl text-sm font-light leading-relaxed text-[#c4cad6]">
+        <p className="mt-4 max-w-3xl text-sm font-light leading-relaxed text-muted-foreground">
           {overview.campaignSummary}
         </p>
       </div>
@@ -56,11 +56,11 @@ export function AnimatedMetric({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-[11px] font-light tracking-wide text-[#8a93a8] uppercase">
+      <span className="text-[11px] font-light tracking-wide text-muted-foreground uppercase">
         {label}
       </span>
       <span
-        className={`font-semibold tracking-tight text-white transition-all duration-700 ${
+        className={`font-semibold tracking-tight text-foreground transition-all duration-700 ${
           large ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
         }`}
       >

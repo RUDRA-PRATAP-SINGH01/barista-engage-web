@@ -37,12 +37,12 @@ export function SegmentTrendChart({ data }: SegmentTrendChartProps) {
           <Line
             type="monotone"
             dataKey="value"
-            stroke="#4b8cff"
+            stroke="var(--foreground)"
             strokeWidth={2}
             dot={false}
             activeDot={{
               r: 3,
-              fill: "#4b8cff",
+              fill: "var(--foreground)",
               stroke: "rgba(255,255,255,0.4)",
               strokeWidth: 1,
             }}

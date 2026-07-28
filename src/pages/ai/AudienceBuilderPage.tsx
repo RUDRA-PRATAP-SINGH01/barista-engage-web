@@ -154,9 +154,9 @@ export function AudienceBuilderPage() {
 
             <div className="flex items-center gap-2">
 
-              <Sparkles className="size-4 text-[#8cb8ff]" />
+              <Sparkles className="size-4 text-[var(--foreground)]" />
 
-              <p className="text-[11px] font-medium tracking-[0.16em] text-[#8cb8ff] uppercase">
+              <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--foreground)] uppercase">
 
                 AI Workspace
 
@@ -164,7 +164,7 @@ export function AudienceBuilderPage() {
 
             </div>
 
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
 
               Audience Builder
 
@@ -182,7 +182,7 @@ export function AudienceBuilderPage() {
 
               onClick={handleReset}
 
-              className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-[#151b28] px-4 py-2 text-sm font-light text-[#c4cad6] transition-colors hover:border-[#4b8cff]/30 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-2 text-sm font-light text-muted-foreground transition-colors hover:border-[var(--foreground)]/30 hover:text-foreground"
 
             >
 
@@ -208,13 +208,13 @@ export function AudienceBuilderPage() {
 
             <div className="mx-auto mb-10 max-w-3xl text-center">
 
-              <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              <h2 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
 
                 Who do you want to reach?
 
               </h2>
 
-              <p className="mt-4 text-base font-light leading-relaxed text-[#8a93a8] sm:text-lg">
+              <p className="mt-4 text-base font-light leading-relaxed text-muted-foreground sm:text-lg">
 
                 Describe your business goal in natural language. AI will identify
 
@@ -246,7 +246,7 @@ export function AudienceBuilderPage() {
 
                 <PremiumSurface className="p-5 text-center">
 
-                  <p className="text-sm font-light text-[#8a93a8]">
+                  <p className="text-sm font-light text-muted-foreground">
 
                     {userMessage ??
 
@@ -346,7 +346,7 @@ export function AudienceBuilderPage() {
 
                 onClick={handleCreateCampaign}
 
-                className="inline-flex items-center gap-2 rounded-full bg-[#4b8cff] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[#3a7af0]"
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:opacity-90"
 
               >
 
@@ -368,7 +368,7 @@ export function AudienceBuilderPage() {
 
           <PremiumSurface className="mx-auto max-w-3xl p-8 text-center">
 
-            <p className="text-sm font-light text-[#8a93a8]">
+            <p className="text-sm font-light text-muted-foreground">
 
               No generation results available. Start a new analysis to continue.
 

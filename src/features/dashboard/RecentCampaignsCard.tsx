@@ -3,13 +3,13 @@ import { ArrowUpRight, Mail, MessageCircle, MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  GlassCardAction,
-  GlassCardContent,
-  GlassCardDescription,
-  GlassCardHeader,
-  GlassCardTitle,
-} from "@/components/cards/GlassCard";
-import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { DashboardCard } from "@/components/shared/DashboardCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -38,10 +38,10 @@ const channelMeta: Record<
 };
 
 const statusStyles: Record<CampaignStatus, string> = {
-  COMPLETED: "bg-primary/15 text-[#8CB8FF]",
-  SENDING: "bg-primary/25 text-primary",
-  SCHEDULED: "bg-white/5 text-muted-foreground",
-  DRAFT: "bg-white/5 text-muted-foreground",
+  COMPLETED: "bg-muted text-foreground",
+  SENDING: "bg-foreground text-background",
+  SCHEDULED: "bg-muted text-muted-foreground",
+  DRAFT: "bg-muted text-muted-foreground",
 };
 
 const SKELETON_ROW_COUNT = 5;
@@ -65,13 +65,10 @@ function RecentCampaignsSkeletonRows() {
   return (
     <>
       {Array.from({ length: SKELETON_ROW_COUNT }).map((_, index) => (
-        <TableRow
-          key={index}
-          className="border-white/[0.06] hover:bg-transparent"
-        >
+        <TableRow key={index} className="border-border hover:bg-transparent">
           {Array.from({ length: 5 }).map((__, cellIndex) => (
             <TableCell key={cellIndex}>
-              <Skeleton className="h-4 w-full max-w-[120px] bg-white/10" />
+              <Skeleton className="h-4 w-full max-w-[120px]" />
             </TableCell>
           ))}
         </TableRow>
@@ -88,34 +85,28 @@ export function RecentCampaignsCard({
   errorMessage,
 }: RecentCampaignsCardProps) {
   return (
-    <LiquidGlassCard
-      blurIntensity="xl"
-      shadowIntensity="md"
-      glowIntensity="sm"
-      borderRadius="16px"
-      className="flex h-full min-w-0 flex-col gap-4 bg-white/8 p-4"
-    >
-      <GlassCardHeader>
-        <GlassCardTitle>Recent Campaigns</GlassCardTitle>
-        <GlassCardDescription>Latest campaign activity</GlassCardDescription>
-        <GlassCardAction>
+    <DashboardCard className="flex min-w-0 flex-col gap-4 py-5">
+      <CardHeader className="pb-0">
+        <CardTitle>Recent Campaigns</CardTitle>
+        <CardDescription>Latest campaign activity</CardDescription>
+        <CardAction>
           <Button
             variant="ghost"
             size="sm"
             asChild
-            className="font-normal text-primary hover:bg-white/5"
+            className="font-normal text-primary hover:bg-muted"
           >
             <Link to="/campaigns">
               View all
               <ArrowUpRight data-icon="inline-end" className="size-3.5" />
             </Link>
           </Button>
-        </GlassCardAction>
-      </GlassCardHeader>
-      <GlassCardContent>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
         <Table>
           <TableHeader>
-            <TableRow className="border-white/[0.06] hover:bg-transparent">
+            <TableRow className="border-border hover:bg-transparent">
               <TableHead className="font-normal text-muted-foreground">
                 Campaign
               </TableHead>
@@ -137,7 +128,7 @@ export function RecentCampaignsCard({
             {isLoading && <RecentCampaignsSkeletonRows />}
 
             {!isLoading && isError && (
-              <TableRow className="border-white/[0.06] hover:bg-transparent">
+              <TableRow className="border-border hover:bg-transparent">
                 <TableCell
                   colSpan={5}
                   className="py-10 text-center text-sm font-normal text-muted-foreground"
@@ -148,7 +139,7 @@ export function RecentCampaignsCard({
             )}
 
             {!isLoading && !isError && isEmpty && (
-              <TableRow className="border-white/[0.06] hover:bg-transparent">
+              <TableRow className="border-border hover:bg-transparent">
                 <TableCell
                   colSpan={5}
                   className="py-10 text-center text-sm font-normal text-muted-foreground"
@@ -166,14 +157,14 @@ export function RecentCampaignsCard({
                 return (
                   <TableRow
                     key={campaign.id}
-                    className="border-white/[0.06] transition-colors duration-150 hover:bg-white/[0.03]"
+                    className="border-border transition-colors duration-150 hover:bg-muted/50"
                   >
                     <TableCell className="font-semibold text-foreground">
                       {campaign.name}
                     </TableCell>
                     <TableCell>
                       <span className="flex items-center gap-2 font-normal text-muted-foreground">
-                        <channel.icon className="size-3.5 text-primary/70" />
+                        <channel.icon className="size-3.5 text-primary" />
                         {channel.label}
                       </span>
                     </TableCell>
@@ -198,7 +189,7 @@ export function RecentCampaignsCard({
               })}
           </TableBody>
         </Table>
-      </GlassCardContent>
-    </LiquidGlassCard>
+      </CardContent>
+    </DashboardCard>
   );
 }

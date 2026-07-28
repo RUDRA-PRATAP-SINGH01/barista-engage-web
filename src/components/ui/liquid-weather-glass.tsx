@@ -23,10 +23,10 @@ const shadowMap: Record<Intensity, string> = {
 
 const glowMap: Record<Intensity, string> = {
   none: "none",
-  sm: "0 0 20px rgba(75, 140, 255, 0.08)",
-  md: "0 0 32px rgba(75, 140, 255, 0.14)",
-  lg: "0 0 48px rgba(75, 140, 255, 0.2)",
-  xl: "0 0 64px rgba(75, 140, 255, 0.28)",
+  sm: "0 0 20px rgba(0, 0, 0, 0.08)",
+  md: "0 0 32px rgba(0, 0, 0, 0.12)",
+  lg: "0 0 48px rgba(0, 0, 0, 0.16)",
+  xl: "0 0 64px rgba(0, 0, 0, 0.2)",
 };
 
 export interface LiquidGlassCardProps
@@ -113,7 +113,7 @@ export function LiquidGlassCard({
         style={{
           borderRadius,
           background:
-            "linear-gradient(145deg, rgba(75,140,255,0.1) 0%, rgba(255,255,255,0.04) 45%, rgba(75,140,255,0.05) 100%)",
+            "linear-gradient(145deg, var(--card) 0%, var(--muted) 100%)",
           border: "1px solid rgba(255, 255, 255, 0.09)",
           boxShadow: boxShadow || undefined,
         }}
@@ -132,7 +132,7 @@ export function LiquidGlassCard({
             e.stopPropagation();
             setExpanded((v) => !v);
           }}
-          className="absolute top-3 right-3 z-20 flex size-7 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+          className="absolute top-3 right-3 z-20 flex size-7 items-center justify-center rounded-lg border border-border bg-white/5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
           aria-label={expanded ? "Collapse card" : "Expand card"}
         >
           {expanded ? (

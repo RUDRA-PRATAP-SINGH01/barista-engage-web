@@ -1,30 +1,29 @@
 import { Coffee } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 export function LandingNavbar() {
   return (
-    <header className="absolute inset-x-0 top-0 z-30 px-8 pt-7">
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-6">
+    <header className="absolute inset-x-0 top-0 z-30 px-6 pt-6 sm:px-8 sm:pt-7">
+      <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-[12px] bg-primary shadow-[0_0_24px_rgba(75,140,255,0.45)]">
-            <Coffee className="size-5 text-white" />
+          <div className="flex size-9 items-center justify-center rounded-lg bg-foreground">
+            <Coffee className="size-4 text-background" />
           </div>
-          <div className="flex flex-col">
-            <span className="text-[15px] font-semibold text-foreground">
-              Barista Engage
-            </span>
-            <span className="text-[11px] font-light text-muted-foreground">
-              Marketing Intelligence
-            </span>
-          </div>
+          <span className="text-sm font-semibold tracking-tight text-foreground">
+            Barista Engage
+          </span>
         </div>
 
-        <Link
-          to="/dashboard"
-          className="landing-explore-btn rounded-full border border-primary/40 bg-primary/15 px-5 py-2 text-sm font-medium text-[#8CB8FF] shadow-[0_0_28px_rgba(75,140,255,0.28)] transition-all duration-200 hover:border-primary/60 hover:bg-primary/22 hover:shadow-[0_0_36px_rgba(75,140,255,0.38)]"
-        >
-          Explore
-        </Link>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Link
+            to="/dashboard"
+            className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            Explore
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -1,0 +1,21 @@
+# Render Blueprint — Barista Engage Web (frontend)
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: barista-engage-web
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://barista-engage-api-8okw.onrender.com
+      # Uncomment to hide Campaign Visual generation when Gemini quota is low:
+      # - key: VITE_ENABLE_CAMPAIGN_CREATIVE
+      #   value: "false"
+    routes:
+      # SPA fallback — React Router client-side routes
+      - type: rewrite
+        source: /*
+        destination: /index.html

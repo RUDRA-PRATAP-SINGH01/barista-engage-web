@@ -65,17 +65,17 @@ export function AudienceAnalysisState({
       <div className="mx-auto flex min-h-[70vh] w-full max-w-3xl flex-col justify-center">
         <PremiumSurface className="p-8 text-center">
           <SectionEyebrow>Analysis Failed</SectionEyebrow>
-          <h2 className="mt-3 text-2xl font-semibold text-white">
+          <h2 className="mt-3 text-2xl font-semibold text-foreground">
             Unable to analyze your goal
           </h2>
-          <p className="mt-3 text-sm font-light leading-relaxed text-[#8a93a8]">
+          <p className="mt-3 text-sm font-light leading-relaxed text-muted-foreground">
             {errorMessage ??
               "Something went wrong while analyzing your audience goal. Please try again."}
           </p>
           <button
             type="button"
             onClick={onRetry}
-            className="mt-6 rounded-[18px] bg-[#4b8cff] px-5 py-3 text-sm font-semibold text-white"
+            className="mt-6 rounded-[18px] bg-foreground px-5 py-3 text-sm font-semibold text-background"
           >
             Try again
           </button>
@@ -88,10 +88,10 @@ export function AudienceAnalysisState({
     <div className="mx-auto flex min-h-[70vh] w-full max-w-3xl flex-col justify-center">
       <div className="mb-8 text-center">
         <SectionEyebrow>AI Audience Builder</SectionEyebrow>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           Building your audience strategy
         </h2>
-        <p className="mt-3 text-sm font-light text-[#8a93a8]">
+        <p className="mt-3 text-sm font-light text-muted-foreground">
           Analyzing customer signals across segments, channels, and revenue
           potential.
         </p>
@@ -99,13 +99,13 @@ export function AudienceAnalysisState({
 
       <PremiumSurface className="overflow-hidden p-6 sm:p-8">
         <div className="mb-8">
-          <div className="mb-2 flex items-center justify-between text-xs font-light text-[#8a93a8]">
+          <div className="mb-2 flex items-center justify-between text-xs font-light text-muted-foreground">
             <span>Progress</span>
             <span>{progress}%</span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-[#0d121c]">
+          <div className="h-2 overflow-hidden rounded-full bg-background">
             <div
-              className="h-full rounded-full bg-[#4b8cff] transition-all duration-700 ease-out"
+              className="h-full rounded-full bg-[var(--foreground)] transition-all duration-700 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -123,10 +123,10 @@ export function AudienceAnalysisState({
                 key={step.id}
                 className={cn(
                   "rounded-[20px] border px-5 py-4 transition-all duration-500",
-                  isComplete && "border-[#4b8cff]/25 bg-[#4b8cff]/8",
+                  isComplete && "border-[var(--foreground)]/25 bg-[var(--foreground)]/8",
                   isActive &&
-                    "border-[#4b8cff]/45 bg-[#4b8cff]/12 shadow-[0_0_40px_rgba(75,140,255,0.12)]",
-                  isPendingStep && "border-white/6 bg-[#0d121c]/60 opacity-70",
+                    "border-[var(--foreground)]/45 bg-[var(--foreground)]/12 shadow-[0_0_40px_transparent]",
+                  isPendingStep && "border-white/6 bg-background/60 opacity-70",
                 )}
               >
                 <div className="flex items-start gap-4">
@@ -134,25 +134,25 @@ export function AudienceAnalysisState({
                     className={cn(
                       "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border text-xs font-semibold",
                       isComplete &&
-                        "border-[#4b8cff] bg-[#4b8cff] text-white",
+                        "border-foreground bg-foreground text-background",
                       isActive &&
-                        "border-[#4b8cff] bg-[#4b8cff]/15 text-[#8cb8ff]",
+                        "border-[var(--foreground)] bg-[var(--foreground)]/15 text-[var(--foreground)]",
                       isPendingStep &&
-                        "border-white/10 bg-[#151b28] text-[#667085]",
+                        "border-border bg-muted text-muted-foreground",
                     )}
                   >
                     {isComplete ? <Check className="size-4" /> : index + 1}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-sm font-semibold text-foreground">
                       {step.label}
                     </p>
-                    <p className="mt-1 text-sm font-light leading-relaxed text-[#8a93a8]">
+                    <p className="mt-1 text-sm font-light leading-relaxed text-muted-foreground">
                       {step.description}
                     </p>
                     {isActive ? (
-                      <div className="mt-3 h-1 overflow-hidden rounded-full bg-[#0d121c]">
-                        <div className="ab-analysis-bar h-full rounded-full bg-[#4b8cff]" />
+                      <div className="mt-3 h-1 overflow-hidden rounded-full bg-background">
+                        <div className="ab-analysis-bar h-full rounded-full bg-[var(--foreground)]" />
                       </div>
                     ) : null}
                   </div>

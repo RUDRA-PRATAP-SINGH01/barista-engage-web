@@ -35,7 +35,7 @@ export function SectionEyebrow({
   return (
     <p
       className={cn(
-        "text-[11px] font-medium tracking-[0.16em] text-[#8cb8ff] uppercase",
+        "text-[11px] font-medium tracking-[0.16em] text-[var(--foreground)] uppercase",
         className,
       )}
     >
@@ -57,19 +57,19 @@ export function MetricBlock({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-[11px] font-light tracking-wide text-[#8a93a8] uppercase">
+      <span className="text-[11px] font-light tracking-wide text-muted-foreground uppercase">
         {label}
       </span>
       <span
         className={cn(
-          "font-semibold tracking-tight text-white",
+          "font-semibold tracking-tight text-foreground",
           large ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl",
         )}
       >
         {value}
       </span>
       {hint ? (
-        <span className="text-xs font-light text-[#8a93a8]">{hint}</span>
+        <span className="text-xs font-light text-muted-foreground">{hint}</span>
       ) : null}
     </div>
   );
@@ -84,9 +84,10 @@ export function PriorityPill({
     <span
       className={cn(
         "rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide uppercase",
-        priority === "High" && "bg-[#4b8cff]/20 text-[#8cb8ff]",
-        priority === "Medium" && "bg-white/8 text-[#c4cad6]",
-        priority === "Low" && "bg-white/5 text-[#8a93a8]",
+        priority === "High" &&
+          "bg-[var(--success)]/15 text-[var(--success)]",
+        priority === "Medium" && "bg-muted text-muted-foreground",
+        priority === "Low" && "bg-muted/70 text-muted-foreground",
       )}
     >
       {priority}

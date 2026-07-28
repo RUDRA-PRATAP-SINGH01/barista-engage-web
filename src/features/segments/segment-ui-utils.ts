@@ -34,17 +34,17 @@ export function getStatusTone(status: string): MetricTone {
 }
 
 export const metricToneClasses: Record<MetricTone, string> = {
-  positive: "text-[#8CB8FF]",
-  warning: "text-[#c9a06a]",
-  negative: "text-[#c97f6a]",
+  positive: "text-[var(--success)]",
+  warning: "text-muted-foreground",
+  negative: "text-destructive",
   neutral: "text-foreground",
 };
 
 export const metricToneBorderClasses: Record<MetricTone, string> = {
-  positive: "border-primary/20 hover:border-primary/30",
-  warning: "border-[#c9a06a]/20 hover:border-[#c9a06a]/35",
-  negative: "border-[#c97f6a]/20 hover:border-[#c97f6a]/35",
-  neutral: "border-white/10 hover:border-white/16",
+  positive: "border-[var(--success)]/25 hover:border-[var(--success)]/40",
+  warning: "border-border hover:border-muted-foreground/40",
+  negative: "border-destructive/25 hover:border-destructive/40",
+  neutral: "border-border hover:border-foreground/20",
 };
 
 type RuleCategory = "spend" | "frequency" | "recency" | "churn" | "general";
@@ -126,14 +126,15 @@ export const healthBadgeStyles: Record<
   healthy: {
     label: "Healthy",
     className:
-      "border-primary/35 bg-primary/12 text-[#8CB8FF]",
+      "border-[var(--success)]/35 bg-[var(--success)]/10 text-[var(--success)]",
   },
   watch: {
     label: "Watch",
-    className: "border-[#c9a06a]/35 bg-[#c9a06a]/10 text-[#c9a06a]",
+    className: "border-border bg-muted text-muted-foreground",
   },
   critical: {
     label: "Critical",
-    className: "border-[#c97f6a]/35 bg-[#c97f6a]/10 text-[#c97f6a]",
+    className:
+      "border-destructive/35 bg-destructive/10 text-destructive",
   },
 };

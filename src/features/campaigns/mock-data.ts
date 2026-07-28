@@ -34,9 +34,9 @@ export const campaignPerformanceTrends = [
 ];
 
 export const campaignStatusBreakdown = [
-  { status: "Completed", count: 6, color: "#4b8cff" },
-  { status: "Active", count: 1, color: "#8CB8FF" },
-  { status: "Draft", count: 1, color: "rgba(163, 167, 178, 0.5)" },
+  { status: "Completed", count: 6, color: "var(--foreground)" },
+  { status: "Active", count: 1, color: "var(--muted-foreground)" },
+  { status: "Draft", count: 1, color: "var(--chart-4)" },
 ];
 
 export const channelPerformance = [

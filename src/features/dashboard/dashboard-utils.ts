@@ -145,17 +145,17 @@ export function buildChurnDistribution(
     {
       risk: "Low",
       count: sumAudienceForSegmentNames(segments, LOW_RISK_SEGMENT_NAMES),
-      color: "#8CB8FF",
+      color: "var(--chart-3)",
     },
     {
       risk: "Medium",
       count: sumAudienceForSegmentNames(segments, MEDIUM_RISK_SEGMENT_NAMES),
-      color: "#4B8CFF",
+      color: "var(--chart-2)",
     },
     {
       risk: "High",
       count: sumAudienceForSegmentNames(segments, HIGH_RISK_SEGMENT_NAMES),
-      color: "#2B5CB8",
+      color: "var(--chart-1)",
     },
   ];
 }

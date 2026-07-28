@@ -39,7 +39,7 @@ export function PageHeader({
           className={cn(
             "gap-2 font-normal text-muted-foreground",
             isGlass
-              ? "glass-control rounded-[10px] border-transparent"
+              ? "glass-control rounded-[10px]"
               : "border-border bg-card",
           )}
         >
@@ -55,9 +55,7 @@ export function PageHeader({
             placeholder="Search"
             className={cn(
               "h-9 w-64 rounded-[10px] pl-9 font-normal placeholder:font-light placeholder:text-muted-foreground",
-              isGlass
-                ? "glass-control border-transparent bg-transparent"
-                : "border-border bg-card",
+              isGlass ? "glass-control bg-transparent" : "border-border bg-card",
             )}
           />
         </div>
@@ -67,13 +65,11 @@ export function PageHeader({
           aria-label="Notifications"
           className={cn(
             "relative size-9 text-muted-foreground",
-            isGlass
-              ? "glass-control border-transparent"
-              : "border-border bg-card",
+            isGlass ? "glass-control" : "border-border bg-card",
           )}
         >
           <Bell className="size-4" />
-          <span className="absolute top-1.5 right-1.5 size-2 rounded-full bg-primary shadow-[0_0_6px_rgba(75,140,255,0.6)]" />
+          <span className="absolute top-1.5 right-1.5 size-2 rounded-full bg-primary shadow-[0_0_6px_color-mix(in_srgb,var(--primary)_60%,transparent)]" />
         </Button>
         {actions}
       </div>

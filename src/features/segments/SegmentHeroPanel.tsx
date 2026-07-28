@@ -106,7 +106,7 @@ export function SegmentHeroPanel({ viewModel }: SegmentHeroPanelProps) {
         <p className="text-[11px] font-medium tracking-[0.16em] text-primary/75 uppercase">
           Segment DNA
         </p>
-        <h2 className="text-[2rem] font-bold tracking-tight text-foreground drop-shadow-[0_0_28px_rgba(75,140,255,0.18)] sm:text-[2.35rem]">
+        <h2 className="text-[2rem] font-bold tracking-tight text-foreground drop-shadow-[0_0_28px_transparent] sm:text-[2.35rem]">
           {viewModel.name}
         </h2>
         <p className="max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
@@ -127,7 +127,7 @@ export function SegmentHeroPanel({ viewModel }: SegmentHeroPanelProps) {
             <span className="text-[88px] leading-none font-bold tracking-tight text-foreground sm:text-[96px]">
               {viewModel.healthScore}
             </span>
-            <span className="mt-2 text-center text-sm font-semibold tracking-wide text-[#8CB8FF]">
+            <span className="mt-2 text-center text-sm font-semibold tracking-wide text-[var(--foreground)]">
               Segment Health
             </span>
             <span className="mt-0.5 text-[10px] font-light text-muted-foreground">

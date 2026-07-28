@@ -68,7 +68,7 @@ export function CampaignSegmentImpactChart({
             />
             <Bar
               dataKey="revenue"
-              fill="#4b8cff"
+              fill="var(--foreground)"
               radius={[0, 6, 6, 0]}
               maxBarSize={16}
             />

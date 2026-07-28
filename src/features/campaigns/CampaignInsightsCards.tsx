@@ -23,7 +23,7 @@ export function CampaignAiInsightsPanel({ className }: { className?: string }) {
             <p className="text-xs font-normal leading-relaxed text-foreground/90">
               {insight.text}
             </p>
-            <p className="mt-0.5 text-[11px] font-semibold text-[#8CB8FF]">
+            <p className="mt-0.5 text-[11px] font-semibold text-[var(--foreground)]">
               {insight.highlight}
             </p>
           </div>
@@ -44,7 +44,7 @@ export function BestPerformingAudienceCard({
       glowIntensity="md"
       className={cn(
         campaignGlassClassName,
-        "relative border border-primary/30 bg-gradient-to-br from-primary/12 via-white/8 to-white/[0.03] shadow-[0_0_40px_rgba(75,140,255,0.16)]",
+        "relative border border-primary/30 bg-gradient-to-br from-primary/12 via-white/8 to-white/[0.03] shadow-[0_0_40px_transparent]",
         className,
       )}
     >
@@ -64,7 +64,7 @@ export function BestPerformingAudienceCard({
           <p className="text-[10px] font-light text-muted-foreground">
             Open Rate
           </p>
-          <p className="mt-0.5 text-sm font-bold text-[#8CB8FF]">
+          <p className="mt-0.5 text-sm font-bold text-[var(--foreground)]">
             {bestPerformingAudience.openRate}%
           </p>
         </div>

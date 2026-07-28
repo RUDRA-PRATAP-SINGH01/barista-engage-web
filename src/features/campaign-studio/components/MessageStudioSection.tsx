@@ -48,7 +48,7 @@ export function MessageStudioSection({
   return (
     <PremiumSurface className="p-6 sm:p-8">
       <SectionEyebrow>Message Studio</SectionEyebrow>
-      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
         Campaign copy
       </h3>
 
@@ -61,8 +61,8 @@ export function MessageStudioSection({
             className={cn(
               "rounded-full border px-4 py-2 text-sm font-light transition-colors",
               activeTab === tab.id
-                ? "border-[#4b8cff]/40 bg-[#4b8cff]/15 text-white"
-                : "border-white/8 bg-[#151b28] text-[#c4cad6] hover:border-[#4b8cff]/25",
+                ? "border-[var(--foreground)]/40 bg-[var(--foreground)]/15 text-foreground"
+                : "border-border bg-muted text-muted-foreground hover:border-[var(--foreground)]/25",
             )}
           >
             {tab.label}
@@ -79,13 +79,13 @@ export function MessageStudioSection({
                 onChange({ ...message, whatsAppMessage: event.target.value })
               }
               rows={5}
-              className="w-full rounded-[22px] rounded-tl-md border border-white/8 bg-[#1f2c3d] px-4 py-3 text-sm font-light leading-relaxed text-white focus:border-[#4b8cff]/40 focus:outline-none"
+              className="w-full rounded-[22px] rounded-tl-md border border-border bg-muted px-4 py-3 text-sm font-light leading-relaxed text-foreground focus:border-[var(--foreground)]/40 focus:outline-none"
             />
           </div>
         ) : null}
 
         {activeTab === "email" ? (
-          <div className="rounded-[24px] border border-white/8 bg-[#f5f7fb] p-6 text-[#10141d]">
+          <div className="rounded-[24px] border border-border bg-[#f5f7fb] p-6 text-[#10141d]">
             <input
               value={message.emailSubject}
               onChange={(event) =>
@@ -112,7 +112,7 @@ export function MessageStudioSection({
               onChange({ ...message, smsMessage: event.target.value })
             }
             rows={4}
-            className="w-full max-w-md rounded-[18px] border border-white/8 bg-[#0d121c] px-4 py-3 text-sm font-light leading-relaxed text-[#c4cad6] focus:border-[#4b8cff]/40 focus:outline-none"
+            className="w-full max-w-md rounded-[18px] border border-border bg-background px-4 py-3 text-sm font-light leading-relaxed text-muted-foreground focus:border-[var(--foreground)]/40 focus:outline-none"
           />
         ) : null}
       </div>
@@ -121,7 +121,7 @@ export function MessageStudioSection({
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-[#151b28] px-4 py-2 text-sm font-light text-[#c4cad6]"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-2 text-sm font-light text-muted-foreground"
         >
           <Copy className="size-4" />
           Copy
@@ -130,13 +130,13 @@ export function MessageStudioSection({
           type="button"
           onClick={() => onRegenerate(activeTab)}
           disabled={isRegenerating}
-          className="inline-flex items-center gap-2 rounded-full border border-[#4b8cff]/30 bg-[#4b8cff]/10 px-4 py-2 text-sm font-light text-[#8cb8ff] disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--foreground)]/30 bg-[var(--foreground)]/10 px-4 py-2 text-sm font-light text-[var(--foreground)] disabled:opacity-60"
         >
           <RefreshCw className={cn("size-4", isRegenerating && "animate-spin")} />
           Regenerate
         </button>
         {copyMessage ? (
-          <span className="text-xs font-light text-[#8cb8ff]">{copyMessage}</span>
+          <span className="text-xs font-light text-[var(--foreground)]">{copyMessage}</span>
         ) : null}
       </div>
     </PremiumSurface>

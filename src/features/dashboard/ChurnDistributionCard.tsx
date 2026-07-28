@@ -1,11 +1,11 @@
 import { Cell, Pie, PieChart, Tooltip } from "recharts";
 import {
-  GlassCardContent,
-  GlassCardDescription,
-  GlassCardHeader,
-  GlassCardTitle,
-} from "@/components/cards/GlassCard";
-import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { DashboardCard } from "@/components/shared/DashboardCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatLocaleNumber, normalizeNumber } from "@/lib/format-utils";
 import type { ChurnDistributionEntry } from "./dashboard-utils";
@@ -26,10 +26,10 @@ interface ChurnDistributionCardProps {
 function ChurnSkeleton() {
   return (
     <div className="flex h-full flex-col items-center justify-between">
-      <Skeleton className="size-[160px] rounded-full bg-white/10" />
+      <Skeleton className="size-[160px] rounded-full" />
       <div className="flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-1">
         {Array.from({ length: 3 }).map((_, index) => (
-          <Skeleton key={index} className="h-3 w-20 bg-white/10" />
+          <Skeleton key={index} className="h-3 w-20" />
         ))}
       </div>
     </div>
@@ -50,20 +50,14 @@ export function ChurnDistributionCard({
   const hasData = total > 0;
 
   return (
-    <LiquidGlassCard
-      blurIntensity="xl"
-      shadowIntensity="md"
-      glowIntensity="sm"
-      borderRadius="16px"
-      className="flex h-full min-w-0 flex-col gap-4 bg-white/8 p-4"
-    >
-      <GlassCardHeader>
-        <GlassCardTitle>Churn Risk</GlassCardTitle>
-        <GlassCardDescription>
+    <DashboardCard className="flex min-w-0 flex-col gap-4 py-5">
+      <CardHeader className="pb-0">
+        <CardTitle>Churn Risk</CardTitle>
+        <CardDescription>
           Customer distribution by churn risk
-        </GlassCardDescription>
-      </GlassCardHeader>
-      <GlassCardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col items-center justify-between">
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex h-[260px] min-h-[260px] min-w-0 flex-col items-center justify-between">
         <DashboardCardFeedback
           isLoading={isLoading}
           isError={isError}
@@ -81,40 +75,44 @@ export function ChurnDistributionCard({
                     dataKey="count"
                     nameKey="risk"
                     innerRadius={58}
-                    outerRadius={80}
-                    paddingAngle={3}
-                    strokeWidth={0}
+                    outerRadius={78}
+                    paddingAngle={4}
+                    stroke="var(--card)"
+                    strokeWidth={3}
+                    cornerRadius={4}
                   >
                     {churnDistribution.map((entry) => (
-                      <Cell
-                        key={entry.risk}
-                        fill={entry.color}
-                        fillOpacity={0.9}
-                      />
+                      <Cell key={entry.risk} fill={entry.color} />
                     ))}
                   </Pie>
                 </PieChart>
               </DashboardChartContainer>
               <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-xl font-bold text-foreground">
-                  {formatLocaleNumber(total)}
+                <span className="text-[10px] font-medium tracking-wider text-muted-foreground uppercase">
+                  Total
                 </span>
-                <span className="text-[11px] font-light text-muted-foreground">
-                  customers
+                <span className="text-xl font-semibold text-foreground">
+                  {formatLocaleNumber(total)}
                 </span>
               </div>
             </div>
-            <div className="flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <div className="flex w-full flex-col gap-2 px-1">
               {churnDistribution.map((entry) => (
-                <div key={entry.risk} className="flex items-center gap-2">
-                  <span
-                    className="size-2 rounded-full"
-                    style={{ backgroundColor: entry.color }}
-                  />
-                  <span className="text-xs font-normal text-muted-foreground">
-                    {entry.risk}
-                  </span>
-                  <span className="text-xs font-semibold text-foreground">
+                <div
+                  key={entry.risk}
+                  className="flex items-center justify-between gap-3 text-xs"
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="size-2.5 rounded-sm"
+                      style={{ backgroundColor: entry.color }}
+                    />
+                    <span className="font-medium text-foreground">
+                      {entry.risk}
+                    </span>
+                  </div>
+                  <span className="tabular-nums text-muted-foreground">
+                    {formatLocaleNumber(entry.count)} ·{" "}
                     {total > 0
                       ? Math.round((normalizeNumber(entry.count) / total) * 100)
                       : 0}
@@ -125,7 +123,7 @@ export function ChurnDistributionCard({
             </div>
           </>
         </DashboardCardFeedback>
-      </GlassCardContent>
-    </LiquidGlassCard>
+      </CardContent>
+    </DashboardCard>
   );
 }

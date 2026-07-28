@@ -27,7 +27,7 @@ export function SegmentRadarChart({ data, segmentId }: SegmentRadarChartProps) {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(75,140,255,0.28)_0%,rgba(75,140,255,0.08)_42%,transparent_70%)]"
+        className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(circle,transparent_0%,transparent_42%,transparent_70%)]"
       />
       <ResponsiveContainer width="100%" height={RADAR_CHART_HEIGHT} minWidth={0}>
         <RadarChart cx="50%" cy="50%" outerRadius="76%" data={data}>
@@ -39,15 +39,15 @@ export function SegmentRadarChart({ data, segmentId }: SegmentRadarChartProps) {
               x2="0"
               y2="1"
             >
-              <stop offset="0%" stopColor="#4b8cff" stopOpacity={0.38} />
-              <stop offset="100%" stopColor="#4b8cff" stopOpacity={0.06} />
+              <stop offset="0%" stopColor="var(--foreground)" stopOpacity={0.38} />
+              <stop offset="100%" stopColor="var(--foreground)" stopOpacity={0.06} />
             </linearGradient>
           </defs>
-          <PolarGrid stroke="rgba(255,255,255,0.09)" />
+          <PolarGrid stroke="var(--chart-grid)" />
           <PolarAngleAxis
             dataKey="dimension"
             tick={{
-              fill: "rgba(200,210,230,0.92)",
+              fill: "var(--chart-tick)",
               fontSize: 11,
               fontWeight: 500,
             }}
@@ -56,7 +56,7 @@ export function SegmentRadarChart({ data, segmentId }: SegmentRadarChartProps) {
             angle={90}
             domain={[0, 100]}
             tick={{
-              fill: "rgba(163,167,178,0.55)",
+              fill: "var(--chart-tick)",
               fontSize: 10,
             }}
             axisLine={false}
@@ -70,7 +70,7 @@ export function SegmentRadarChart({ data, segmentId }: SegmentRadarChartProps) {
             key={segmentId}
             name="Score"
             dataKey="score"
-            stroke="#4b8cff"
+            stroke="var(--foreground)"
             fill={`url(#radar-fill-${gradientId})`}
             fillOpacity={1}
             strokeWidth={2.5}

@@ -9,7 +9,7 @@ export function AudienceRoiForecastPanel({ data }: AudienceRoiForecastPanelProps
   return (
     <PremiumSurface variant="accent" className="p-6 sm:p-8">
       <SectionEyebrow>ROI Forecast</SectionEyebrow>
-      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
         Expected campaign impact
       </h3>
 

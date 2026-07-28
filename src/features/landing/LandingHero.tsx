@@ -7,23 +7,41 @@ interface LandingHeroProps {
 export function LandingHero({ exiting }: LandingHeroProps) {
   return (
     <motion.div
-      className="relative z-10 mx-auto flex max-w-[700px] flex-col items-center px-6 text-center"
+      className="relative z-10 mx-auto flex max-w-[720px] flex-col items-center px-6 text-center"
       animate={
         exiting
-          ? { opacity: 0, y: -16, scale: 0.98 }
-          : { opacity: 1, y: 0, scale: 1 }
+          ? { opacity: 0, y: -12 }
+          : { opacity: 1, y: 0 }
       }
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
     >
-      <h1 className="text-[clamp(2.5rem,5.2vw,4.25rem)] leading-[1.05] font-bold tracking-tight text-foreground drop-shadow-[0_0_40px_rgba(75,140,255,0.12)]">
-        Transform Customer Data
-        <br />
-        Into Revenue
-      </h1>
-      <p className="mt-6 max-w-[700px] text-base leading-relaxed font-light text-muted-foreground sm:text-lg">
-        AI-powered audience segmentation, campaign intelligence, and customer
-        retention insights for modern coffee brands.
-      </p>
+      <motion.p
+        className="text-[clamp(2rem,5vw,3.5rem)] font-semibold tracking-tight text-foreground"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.05 }}
+      >
+        Barista Engage
+      </motion.p>
+
+      <motion.h1
+        className="mt-4 text-[clamp(1.35rem,3vw,1.85rem)] font-medium leading-snug tracking-tight text-muted-foreground"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.12 }}
+      >
+        Transform customer data into revenue
+      </motion.h1>
+
+      <motion.p
+        className="mt-5 max-w-[34rem] text-base leading-relaxed text-muted-foreground sm:text-[15px]"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        AI audience segments, campaign intelligence, and retention insights —
+        built for modern coffee brands.
+      </motion.p>
     </motion.div>
   );
 }

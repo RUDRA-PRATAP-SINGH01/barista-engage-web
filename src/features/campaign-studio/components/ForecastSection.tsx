@@ -15,7 +15,7 @@ export function ForecastSection({ forecast, funnel }: ForecastSectionProps) {
   return (
     <PremiumSurface variant="elevated" className="p-6 sm:p-8">
       <SectionEyebrow>Forecast</SectionEyebrow>
-      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
         Performance projection
       </h3>
 
@@ -26,16 +26,16 @@ export function ForecastSection({ forecast, funnel }: ForecastSectionProps) {
             className="flex w-full max-w-2xl flex-col items-center"
           >
             <div
-              className="w-full rounded-[20px] border border-[#4b8cff]/20 bg-[#4b8cff]/8 px-5 py-4 text-center transition-all duration-500 hover:scale-[1.01]"
+              className="w-full rounded-[20px] border border-[var(--foreground)]/20 bg-[var(--foreground)]/8 px-5 py-4 text-center transition-all duration-500 hover:scale-[1.01]"
               style={{ maxWidth: `${Math.max(42, 100 - index * 10)}%` }}
             >
-              <p className="text-[11px] font-light tracking-wide text-[#8a93a8] uppercase">
+              <p className="text-[11px] font-light tracking-wide text-muted-foreground uppercase">
                 {stage.label}
               </p>
-              <p className="mt-1 text-2xl font-semibold text-white">{stage.value}</p>
+              <p className="mt-1 text-2xl font-semibold text-foreground">{stage.value}</p>
             </div>
             {index < funnel.length - 1 ? (
-              <ArrowDown className="my-1 size-4 text-[#4b8cff]/60" />
+              <ArrowDown className="my-1 size-4 text-[var(--foreground)]/60" />
             ) : null}
           </div>
         ))}

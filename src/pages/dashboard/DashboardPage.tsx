@@ -84,7 +84,7 @@ export function DashboardPage() {
   return (
     <div className="dashboard-shell w-full min-w-0 pb-4">
       <div className="dashboard-content flex w-full min-w-0 flex-col gap-6">
-        <PageHeader title="Dashboard" variant="glass" />
+        <PageHeader title="Dashboard" />
 
         <DashboardHeroStrip
           heroSummary={heroSummary}

@@ -14,9 +14,9 @@ export const channelMeta: Record<
 };
 
 export const hubStatusStyles: Record<CampaignHubStatus, string> = {
-  Draft: "border-white/10 bg-white/[0.04] text-muted-foreground",
-  Active: "border-primary/35 bg-primary/15 text-primary",
-  Completed: "border-primary/25 bg-primary/10 text-[#8CB8FF]",
+  Draft: "border-border bg-muted text-muted-foreground",
+  Active: "border-foreground/20 bg-foreground text-background",
+  Completed: "border-border bg-muted text-foreground",
 };
 
 const defaultChannelMeta = channelMeta.EMAIL;

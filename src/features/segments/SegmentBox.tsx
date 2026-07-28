@@ -83,7 +83,7 @@ export function SegmentBox({
           <span
             className={cn(
               "flex shrink-0 items-center gap-0.5 text-xs font-semibold",
-              positive ? "text-[#8CB8FF]" : "text-muted-foreground",
+              positive ? "text-[var(--success)]" : "text-destructive",
             )}
           >
             {positive ? (

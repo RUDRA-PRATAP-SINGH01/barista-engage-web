@@ -9,10 +9,10 @@ export function AudienceGeneratedPanel({ data }: AudienceGeneratedPanelProps) {
   return (
     <PremiumSurface className="h-full p-6 sm:p-8">
       <SectionEyebrow>Generated Audience</SectionEyebrow>
-      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
         {data.name}
       </h3>
-      <p className="mt-4 text-sm font-light leading-relaxed text-[#8a93a8]">
+      <p className="mt-4 text-sm font-light leading-relaxed text-muted-foreground">
         {data.description}
       </p>
 

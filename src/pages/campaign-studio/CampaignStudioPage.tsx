@@ -372,21 +372,21 @@ export function CampaignStudioPage() {
         <div>
           <Link
             to="/ai/audience-builder"
-            className="inline-flex items-center gap-2 text-sm font-light text-[#8a93a8] transition-colors hover:text-white"
+            className="inline-flex items-center gap-2 text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="size-4" />
             Back to Audience Builder
           </Link>
           <div className="mt-3 flex items-center gap-2">
-            <Megaphone className="size-4 text-[#8cb8ff]" />
-            <p className="text-[11px] font-medium tracking-[0.16em] text-[#8cb8ff] uppercase">
+            <Megaphone className="size-4 text-[var(--foreground)]" />
+            <p className="text-[11px] font-medium tracking-[0.16em] text-[var(--foreground)] uppercase">
               Campaign Studio
             </p>
           </div>
-          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
             What should you send?
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-light text-[#8a93a8]">
+          <p className="mt-2 max-w-2xl text-sm font-light text-muted-foreground">
             Turning {audienceInput.generatedAudience.name} into campaign copy,
             creative, and launch-ready assets for: {audienceInput.goal}
           </p>

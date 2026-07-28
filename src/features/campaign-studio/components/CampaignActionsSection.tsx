@@ -42,7 +42,7 @@ export function CampaignActionsSection({
   return (
     <PremiumSurface variant="accent" className="p-6 sm:p-8">
       <SectionEyebrow>Campaign Actions</SectionEyebrow>
-      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
         Launch readiness
       </h3>
 
@@ -82,7 +82,7 @@ export function CampaignActionsSection({
           type="button"
           onClick={onSave}
           disabled={isSaving}
-          className="inline-flex items-center gap-2 rounded-[18px] bg-[#4b8cff] px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_48px_rgba(75,140,255,0.28)] disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-[18px] bg-foreground px-5 py-3 text-sm font-semibold text-background disabled:opacity-60"
         >
           <Bookmark className="size-4" />
           {isSaving ? "Saving..." : "Save Campaign"}
@@ -91,7 +91,7 @@ export function CampaignActionsSection({
           type="button"
           onClick={onLaunch}
           disabled={isLaunching || !savedCampaign}
-          className="inline-flex items-center gap-2 rounded-[18px] border border-[#4b8cff]/40 bg-[#4b8cff]/10 px-5 py-3 text-sm font-semibold text-[#8cb8ff] disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-[18px] border border-[var(--foreground)]/40 bg-[var(--foreground)]/10 px-5 py-3 text-sm font-semibold text-[var(--foreground)] disabled:opacity-60"
         >
           <Rocket className="size-4" />
           {isLaunching ? "Launching..." : "Launch Campaign"}

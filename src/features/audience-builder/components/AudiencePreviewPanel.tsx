@@ -9,7 +9,7 @@ export function AudiencePreviewPanel({ data }: AudiencePreviewPanelProps) {
   return (
     <PremiumSurface variant="elevated" className="p-6 sm:p-8">
       <SectionEyebrow>Audience Preview</SectionEyebrow>
-      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
         Reach estimate
       </h3>
 

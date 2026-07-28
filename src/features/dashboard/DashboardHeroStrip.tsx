@@ -1,5 +1,5 @@
 import { AlertTriangle, Megaphone, Sparkles, Users } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/liquid-weather-glass";
+import { DashboardCard } from "@/components/shared/DashboardCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { HeroSummary } from "./dashboard-utils";
 import {
@@ -27,32 +27,21 @@ export function DashboardHeroStrip({
   errorMessage,
 }: DashboardHeroStripProps) {
   return (
-    <LiquidGlassCard
-      blurIntensity="xl"
-      shadowIntensity="lg"
-      glowIntensity="md"
-      borderRadius="16px"
-      className="relative overflow-hidden bg-white/[0.06] p-0"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-primary/20 via-primary to-primary/20"
-      />
-
+    <DashboardCard className="overflow-hidden py-0">
       {isLoading ? (
         <div className="flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
           <div className="flex flex-1 flex-col gap-4">
             <div className="space-y-2">
-              <Skeleton className="h-3 w-24 bg-white/10" />
-              <Skeleton className="h-8 w-72 max-w-full bg-white/10" />
+              <Skeleton className="h-3 w-24" />
+              <Skeleton className="h-8 w-72 max-w-full" />
             </div>
             <div className="flex flex-wrap gap-x-6 gap-y-2">
               {Array.from({ length: 3 }).map((_, index) => (
-                <Skeleton key={index} className="h-4 w-44 bg-white/10" />
+                <Skeleton key={index} className="h-4 w-44" />
               ))}
             </div>
           </div>
-          <Skeleton className="h-24 w-full rounded-[12px] bg-white/10 lg:max-w-md" />
+          <Skeleton className="h-24 w-full rounded-xl lg:max-w-md" />
         </div>
       ) : isError ? (
         <div className="flex min-h-[120px] items-center justify-center p-6 text-sm font-normal text-muted-foreground">
@@ -62,7 +51,7 @@ export function DashboardHeroStrip({
         <div className="flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
           <div className="flex flex-col gap-4">
             <div>
-              <p className="text-[11px] font-medium tracking-[0.14em] text-primary/80 uppercase">
+              <p className="text-[11px] font-medium tracking-[0.14em] text-primary uppercase">
                 Intelligence
               </p>
               <h2 className="mt-1 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
@@ -75,7 +64,7 @@ export function DashboardHeroStrip({
                 const Icon = statIcons[stat.icon];
                 return (
                   <div key={stat.label} className="flex items-center gap-2">
-                    <Icon className="size-3.5 shrink-0 text-primary/70" />
+                    <Icon className="size-3.5 shrink-0 text-primary" />
                     <span className="text-sm font-light text-muted-foreground">
                       <span className="font-semibold text-foreground">
                         {stat.value}
@@ -89,7 +78,7 @@ export function DashboardHeroStrip({
           </div>
 
           <div className="relative min-w-0 flex-1 lg:max-w-md">
-            <div className="rounded-[12px] border border-primary/20 bg-gradient-to-br from-primary/12 via-white/[0.04] to-transparent p-4">
+            <div className="rounded-xl border border-border bg-muted/50 p-4">
               <div className="mb-2 flex items-center gap-2">
                 <Sparkles className="size-3.5 text-primary" />
                 <span className="text-[11px] font-semibold tracking-wide text-primary uppercase">
@@ -105,6 +94,6 @@ export function DashboardHeroStrip({
       ) : (
         <DashboardCardFeedback isEmpty className="min-h-[120px]" />
       )}
-    </LiquidGlassCard>
+    </DashboardCard>
   );
 }

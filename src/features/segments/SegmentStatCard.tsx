@@ -40,12 +40,12 @@ export function SegmentStatCard({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <h3 className="truncate text-[15px] font-semibold text-white">
+          <h3 className="truncate text-[15px] font-semibold text-foreground">
             {title}
           </h3>
-          <p className="mt-1 text-xs font-light text-white/45">{subtitle}</p>
+          <p className="mt-1 text-xs font-light text-muted-foreground">{subtitle}</p>
         </div>
-        <span className="flex shrink-0 items-center gap-1 rounded-lg border border-white/10 bg-white/[0.04] px-2 py-1 text-[11px] font-normal text-white/55">
+        <span className="flex shrink-0 items-center gap-1 rounded-lg border border-border bg-white/[0.04] px-2 py-1 text-[11px] font-normal text-muted-foreground">
           View
           <ChevronDown className="size-3" />
         </span>
@@ -77,7 +77,7 @@ export function SegmentStatCard({
                     : {}),
                 }}
               />
-              <span className="text-[10px] font-light text-white/35">
+              <span className="text-[10px] font-light text-muted-foreground">
                 {weekLabels[index]}
               </span>
             </div>
@@ -88,15 +88,15 @@ export function SegmentStatCard({
       <div className="mt-auto grid grid-cols-3 gap-2 border-t border-white/[0.08] pt-4">
         {footer.map((item) => (
           <div key={item.label} className="flex flex-col gap-0.5">
-            <span className="text-[10px] font-light text-white/40">
+            <span className="text-[10px] font-light text-muted-foreground">
               {item.label}
             </span>
             <span
               className={cn(
                 "flex items-center gap-0.5 text-lg font-semibold leading-none",
-                item.trend === "up" && "text-[#91bb95]",
-                item.trend === "down" && "text-[#dd7957]",
-                !item.trend && "text-white",
+                item.trend === "up" && "text-[var(--success)]",
+                item.trend === "down" && "text-destructive",
+                !item.trend && "text-foreground",
               )}
             >
               {item.trend === "up" && <TrendingUp className="size-3.5" />}
@@ -108,7 +108,7 @@ export function SegmentStatCard({
       </div>
 
       {status && (
-        <p className="text-[11px] font-light text-white/40">{status}</p>
+        <p className="text-[11px] font-light text-muted-foreground">{status}</p>
       )}
     </div>
   );

@@ -110,10 +110,10 @@ export function SegmentMarketingCard({ marketing }: SegmentMarketingCardProps) {
               Expected Impact
             </p>
             <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
-              <span className="text-sm font-semibold text-[#8CB8FF]">
+              <span className="text-sm font-semibold text-[var(--foreground)]">
                 {marketing.expectedImpactEngagement}
               </span>
-              <span className="text-sm font-semibold text-[#8CB8FF]">
+              <span className="text-sm font-semibold text-[var(--foreground)]">
                 {marketing.expectedImpactRetention}
               </span>
             </div>
@@ -123,7 +123,7 @@ export function SegmentMarketingCard({ marketing }: SegmentMarketingCardProps) {
           </p>
           <button
             type="button"
-            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-[#8CB8FF]"
+            className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--foreground)]"
           >
             Launch campaign
             <ArrowRight className="size-3.5" />
